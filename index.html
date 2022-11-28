@@ -5,14 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link rel="shortcut icon" href="img/fav.png" type="image/x-icon">
     <title>Anime Jobs</title>
 </head>
 <body>
     <header class="bg-[#3a020d] w-full py-5 flex justify-center text-[#e06991] bg-[url('/img/inuyasha.png')] bg-right-bottom bg-contain bg-no-repeat shadow-inner">
         <div class="w-2/3 flex justify-between items-end">
-            <a href="#"><img src="img/logo.png" alt="Logo Anime Jobs" class="w-[110px]"></a>
+            <a href="#"><img src="img/logo.png" alt="Logo Anime Jobs" class="w-[110px] "></a>
             <nav class="mb-7">
-                <ul class="flex text-2xl font-bold">
+                <ul class="flex text-3xl font-bold font-['Caveat']">
                     <li class="px-5"><a href="#" class="bold border-b-transparent hover:border-b-[#e06991] border-b-2">Home</a></li>
                     <li class="px-5"><a href="#" class="bold border-b-transparent hover:border-b-[#e06991] border-b-2">Nuevo Empleo</a></li>
                     <li class="px-5"><a href="#" class="bold border-b-transparent hover:border-b-[#e06991] border-b-2">Botón</a></li>
@@ -28,14 +30,10 @@
                 <button class="bg-[#b7325e] py-3 px-5 mr-3 rounded-t-lg">Más solicitados</button>
                 <button class="bg-[#b7325e] py-3 px-5 mr-3 rounded-t-lg">Menos solicitados</button>
             </div>
-            <div class="bg-[#ce4164] p-10 flex gap-10 justify-around rounded-tr-lg rounded-br-lg rounded-bl-lg">
-                <div class="bg-white w-[180px] h-[220px] rounded-lg shadow-inner"></div>
-                <div class="bg-white w-[180px] h-[220px] rounded-lg shadow-inner"></div>
-                <div class="bg-white w-[180px] h-[220px] rounded-lg shadow-inner"></div>
-                <div class="bg-white w-[180px] h-[220px] rounded-lg shadow-inner"></div>
-                <div class="bg-white w-[180px] h-[220px] rounded-lg shadow-inner"></div>
+            <div id="containerHighlights" class="bg-[#ce4164] p-10 flex flex-wrap gap-7 justify-around rounded-tr-lg rounded-br-lg rounded-bl-lg">
             </div>
         </div>
     </section>
+    <script src="js/app.js"></script>
 </body>
 </html>
