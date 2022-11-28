@@ -1,7 +1,17 @@
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
 
+// ***************************************** Variables ************************************************
+
+const lastAdditions = $("#lastAdditions")
+const mostRequested = $("#mostRequested")
+const lessRequested = $("#lessRequested")
+
 let counter = 0
+
+// ***************************************** End Variables ************************************************
+
+// ***************************************** Variables ************************************************
 
 const showData = () => {
     fetch("https://6380fa6a8efcfcedac14a09f.mockapi.io/jobs")
@@ -31,6 +41,20 @@ const listJobs = (jobs) => {
         console.log(image);
     }
 }
+
+// const highlightedButtons = (button) => {
+//     switch (button){
+//         case 'lastAdditions':
+
+//         break;
+//         case 'mostRequested':
+//             lastAdditions.style.display = 'none'
+//         break;
+//         case 'lessRequested':
+
+//         break;
+//     }
+// }
 
 console.log(new Date(1669402798).toLocaleDateString());
 
