@@ -7,7 +7,7 @@ const lastAdditions = $("#lastAdditions")
 const mostRequested = $("#mostRequested")
 const lessRequested = $("#lessRequested")
 
-let counter = 0
+let dataJobs = []
 
 // ***************************************** End Variables ************************************************
 
@@ -16,12 +16,34 @@ let counter = 0
 const showData = () => {
     fetch("https://6380fa6a8efcfcedac14a09f.mockapi.io/jobs")
         .then(response => response.json())
-        .then(data => listJobs(data))
+        .then(data => {
+            dataJobs = data;
+            listJobs(dataJobs)
+    })
 }
 
 showData()
 
+const mostOrLessRequested = (searchBy, data ) => {
+    let order = []
+    switch (searchBy){
+        case 'most':
+            order = data.sort((a,b) => {
+                return a.applications < b.applications
+            })
+        break;
+        case 'less':
+            order = data.sort((a,b) => {
+                return a.applications > b.applications
+            })
+        break;
+    }
+    return order
+}
+
 const listJobs = (jobs) => {
+    let counter = 0;
+    $("#containerHighlights").innerHTML = "";
     for (const { name, description, location, seniority, salary, publicationDate, image, anime, page, applications, id } of jobs){
         if (counter < 4) {
             $("#containerHighlights").innerHTML += `
@@ -38,39 +60,17 @@ const listJobs = (jobs) => {
             `
             counter += 1
         }
-        console.log(image);
     }
 }
 
-// const highlightedButtons = (button) => {
-//     switch (button){
-//         case 'lastAdditions':
+mostRequested.addEventListener('click', () => {
+    listJobs(mostOrLessRequested("most", dataJobs))
+})
 
-//         break;
-//         case 'mostRequested':
-//             lastAdditions.style.display = 'none'
-//         break;
-//         case 'lessRequested':
+lessRequested.addEventListener('click',() => {
+    listJobs(mostOrLessRequested("less", dataJobs))
+})
 
-//         break;
-//     }
-// }
 
-console.log(new Date(1669402798).toLocaleDateString());
+// console.log(new Date(1669402798).toLocaleDateString());
 
-// const listUsers = (users) => {
-//     for (const { id, name, age, email } of users) {
-//         $("#container-cards").innerHTML += `
-//             <div class="card ${age > 25 ? "bg-secondary" : "bg-warning"}" style="width: 18rem;">
-//                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUrwXhr_qsBUVpDOaVcmfwmY94l8UYSCnEdOmS3HwzPz7igarTyNZFC0MC0ccWQXtVqMw&usqp=CAU" class="card-img-top">
-//                 <div class="card-body">
-//                     <h5 class="card-title">${name}</h5>
-//                     <p class="card-text">Age: ${age}.</p>
-//                     <p class="card-text">Email: ${email}.</p>
-//                     <a href="#" class="btn btn-primary btn-detail" data-id="${id}">Details</a>
-//                     <a href="#" class="btn btn-success btn-edit" data-id="${id}">Edit</a>
-//                     <a href="#" class="btn btn-danger btn-delete" data-id="${id}">Delete</a>
-//                 </div>
-//             </div>
-//         `
-//     }
