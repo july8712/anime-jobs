@@ -11,14 +11,14 @@ let dataJobs = []
 
 // ***************************************** End Variables ************************************************
 
-// ***************************************** Variables ************************************************
+// ***************************************** Functions ************************************************
 
 const showData = () => {
     fetch("https://6380fa6a8efcfcedac14a09f.mockapi.io/jobs")
         .then(response => response.json())
         .then(data => {
             dataJobs = data;
-            listJobs(dataJobs)
+            listJobs(mostOrLessRequested("recent", dataJobs))
     })
 }
 
@@ -37,9 +37,24 @@ const mostOrLessRequested = (searchBy, data ) => {
                 return a.applications > b.applications
             })
         break;
-    }
+        case 'recent':
+            order = data.sort((a,b) => {
+                // console.log(a.publicationDate, b.publicationDate)
+                return new Date(a.publicationDate).getTime() < new Date(b.publicationDate).getTime()
+            })
+            break;
+        }
+        // console.log("fecha");
+        // console.table(order, "fecha");
     return order
 }
+
+// const sortByMostRecent = (data) => {
+//     let order = []
+//     order = data.sort((a,b) => {
+//                 return a.id < b.id
+//             })
+// }
 
 const listJobs = (jobs) => {
     let counter = 0;
@@ -63,14 +78,40 @@ const listJobs = (jobs) => {
     }
 }
 
+
+// *********************************** Events ***********************************
+
 mostRequested.addEventListener('click', () => {
     listJobs(mostOrLessRequested("most", dataJobs))
+    mostRequested.classList.remove("bg-[#b7325e]")
+    mostRequested.classList.add("bg-[#ce4164]")
+    lastAdditions.classList.remove("bg-[#ce4164]")
+    lastAdditions.classList.add("bg-[#b7325e]")
+    lessRequested.classList.add("bg-[#b7325e]")
+    lessRequested.classList.remove("bg-[#ce4164]")
+    // mostRequested.style.backgroundColor = "#b7325e"
+    // lastAdditions.style.backgroundColor = "#ce4164"
 })
 
 lessRequested.addEventListener('click',() => {
     listJobs(mostOrLessRequested("less", dataJobs))
+    lessRequested.classList.add("bg-[#ce4164]")
+    lessRequested.classList.remove("bg-[#b7325e]")
+    lastAdditions.classList.remove("bg-[#ce4164]")
+    lastAdditions.classList.add("bg-[#b7325e]")
+    mostRequested.classList.add("bg-[#b7325e]")
+    mostRequested.classList.remove("bg-[#ce4164]")
 })
 
+lastAdditions.addEventListener('click',() => {
+    listJobs(mostOrLessRequested("recent", dataJobs))
+    lastAdditions.classList.remove("bg-[#b7325e]")
+    lastAdditions.classList.add("bg-[#ce4164]")
+    lessRequested.classList.remove("bg-[#ce4164]")
+    lessRequested.classList.add("bg-[#b7325e]")
+    mostRequested.classList.add("bg-[#b7325e]")
+    mostRequested.classList.remove("bg-[#ce4164]")
+})
 
 // console.log(new Date(1669402798).toLocaleDateString());
 
