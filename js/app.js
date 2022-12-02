@@ -1,5 +1,12 @@
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
+const addClass = (selector, classname) => {
+    selector.classList.add(classname)
+} 
+const removeClass = (selector, classname) => {
+    selector.classList.remove(classname)
+} 
+
 
 // ***************************************** Variables ************************************************
 
@@ -18,13 +25,13 @@ const showData = () => {
         .then(response => response.json())
         .then(data => {
             dataJobs = data;
-            listJobs(mostOrLessRequested("recent", dataJobs))
+            listJobs(changeHighlights("recent", dataJobs))
     })
 }
 
 showData()
 
-const mostOrLessRequested = (searchBy, data ) => {
+const changeHighlights = (searchBy, data ) => {
     let order = []
     switch (searchBy){
         case 'most':
@@ -39,22 +46,12 @@ const mostOrLessRequested = (searchBy, data ) => {
         break;
         case 'recent':
             order = data.sort((a,b) => {
-                // console.log(a.publicationDate, b.publicationDate)
                 return new Date(a.publicationDate).getTime() < new Date(b.publicationDate).getTime()
             })
             break;
         }
-        // console.log("fecha");
-        // console.table(order, "fecha");
     return order
 }
-
-// const sortByMostRecent = (data) => {
-//     let order = []
-//     order = data.sort((a,b) => {
-//                 return a.id < b.id
-//             })
-// }
 
 const listJobs = (jobs) => {
     let counter = 0;
@@ -82,35 +79,33 @@ const listJobs = (jobs) => {
 // *********************************** Events ***********************************
 
 mostRequested.addEventListener('click', () => {
-    listJobs(mostOrLessRequested("most", dataJobs))
-    mostRequested.classList.remove("bg-[#b7325e]")
-    mostRequested.classList.add("bg-[#ce4164]")
-    lastAdditions.classList.remove("bg-[#ce4164]")
-    lastAdditions.classList.add("bg-[#b7325e]")
-    lessRequested.classList.add("bg-[#b7325e]")
-    lessRequested.classList.remove("bg-[#ce4164]")
-    // mostRequested.style.backgroundColor = "#b7325e"
-    // lastAdditions.style.backgroundColor = "#ce4164"
+    listJobs(changeHighlights("most", dataJobs))
+    removeClass(mostRequested, "bg-[#b7325e]")
+    addClass(mostRequested, "bg-[#ce4164]")
+    removeClass(lastAdditions, "bg-[#ce4164]")
+    addClass(lastAdditions, "bg-[#b7325e]")
+    removeClass(lessRequested, "bg-[#ce4164]")
+    addClass(lessRequested, "bg-[#b7325e]")
 })
 
 lessRequested.addEventListener('click',() => {
-    listJobs(mostOrLessRequested("less", dataJobs))
-    lessRequested.classList.add("bg-[#ce4164]")
-    lessRequested.classList.remove("bg-[#b7325e]")
-    lastAdditions.classList.remove("bg-[#ce4164]")
-    lastAdditions.classList.add("bg-[#b7325e]")
-    mostRequested.classList.add("bg-[#b7325e]")
-    mostRequested.classList.remove("bg-[#ce4164]")
+    listJobs(changeHighlights("less", dataJobs))
+    removeClass(mostRequested, "bg-[#ce4164]")
+    addClass(mostRequested, "bg-[#b7325e]")
+    removeClass(lastAdditions, "bg-[#ce4164]")
+    addClass(lastAdditions, "bg-[#b7325e]")
+    removeClass(lessRequested, "bg-[#b7325e]")
+    addClass(lessRequested, "bg-[#ce4164]")
 })
 
 lastAdditions.addEventListener('click',() => {
-    listJobs(mostOrLessRequested("recent", dataJobs))
-    lastAdditions.classList.remove("bg-[#b7325e]")
-    lastAdditions.classList.add("bg-[#ce4164]")
-    lessRequested.classList.remove("bg-[#ce4164]")
-    lessRequested.classList.add("bg-[#b7325e]")
-    mostRequested.classList.add("bg-[#b7325e]")
-    mostRequested.classList.remove("bg-[#ce4164]")
+    listJobs(changeHighlights("recent", dataJobs))
+    removeClass(mostRequested, "bg-[#ce4164]")
+    addClass(mostRequested, "bg-[#b7325e]")
+    removeClass(lastAdditions, "bg-[#b7325e]")
+    addClass(lastAdditions, "bg-[#ce4164]")
+    removeClass(lessRequested, "bg-[#ce4164]")
+    addClass(lessRequested, "bg-[#b7325e]")
 })
 
 // console.log(new Date(1669402798).toLocaleDateString());
