@@ -60,7 +60,7 @@ const listJobs = (jobs) => {
         if (counter < 4) {
             $("#containerHighlights").innerHTML += `
             <div class="w-[250px] bg-white p-3">
-                <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-[200px] mb-7"></div>
+                <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-7"></div>
                 <h2 class="mb-1 text-2xl">${name}</h2>
                 <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
                 <p class="mb-4">${description.slice(0,70)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
