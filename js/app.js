@@ -5,7 +5,8 @@ const addClass = (selector, classname) => {
 } 
 const removeClass = (selector, classname) => {
     selector.classList.remove(classname)
-} 
+}
+const URL_BASE =  "https://6380fa6a8efcfcedac14a09f.mockapi.io/jobs/"
 
 
 // ***************************************** Variables ************************************************
@@ -13,6 +14,7 @@ const removeClass = (selector, classname) => {
 const lastAdditions = $("#lastAdditions")
 const mostRequested = $("#mostRequested")
 const lessRequested = $("#lessRequested")
+const generalContainer = $("#generalContainer")
 
 let dataJobs = []
 
@@ -21,12 +23,14 @@ let dataJobs = []
 // ***************************************** Functions ************************************************
 
 const showData = () => {
-    fetch("https://6380fa6a8efcfcedac14a09f.mockapi.io/jobs")
+    fetch(`${URL_BASE}`)
         .then(response => response.json())
         .then(data => {
             dataJobs = data;
+            printJobs(data)
             listJobs(changeHighlights("recent", dataJobs))
-    })
+        })
+        .catch(err => console.log(err))
 }
 
 showData()
@@ -56,7 +60,7 @@ const changeHighlights = (searchBy, data ) => {
 const listJobs = (jobs) => {
     let counter = 0;
     $("#containerHighlights").innerHTML = "";
-    for (const { name, description, location, seniority, salary, publicationDate, image, anime, page, applications, id } of jobs){
+    for (const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } of jobs){
         if (counter < 4) {
             $("#containerHighlights").innerHTML += `
             <div class="w-[250px] bg-white p-3">
@@ -64,6 +68,28 @@ const listJobs = (jobs) => {
                 <h2 class="mb-1 text-2xl">${name}</h2>
                 <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
                 <p class="mb-4">${description.slice(0,70)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
+                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${anime}</span>
+                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience}</span>
+                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
+                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
+            </div>
+            `
+            counter += 1
+        }
+    }
+}
+
+const printJobs = (jobs) => {
+    generalContainer.innerHTML = ""
+    let counter = 0;
+    for (const { name, description, location, seniority, salary, publicationDate, image, anime, page, applications, id } of jobs){
+        if (counter < 8) {
+            generalContainer.innerHTML += `
+            <div class="w-[350px] bg-white p-3">
+                <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-7"></div>
+                <h2 class="mb-1 text-2xl">${name}</h2>
+                <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
+                <p class="mb-4">${description.slice(0,150)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${anime}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${seniority}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
@@ -74,6 +100,7 @@ const listJobs = (jobs) => {
         }
     }
 }
+
 
 
 // *********************************** Events ***********************************
