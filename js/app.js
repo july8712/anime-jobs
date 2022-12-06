@@ -17,6 +17,7 @@ const lessRequested = $("#lessRequested")
 const generalContainer = $("#generalContainer")
 
 let dataJobs = []
+let animeNameSelect = []
 
 // ***************************************** End Variables ************************************************
 
@@ -28,6 +29,7 @@ const showData = () => {
         .then(data => {
             dataJobs = data;
             printJobs(data)
+            animeList(data)
             listJobs(changeHighlights("recent", dataJobs))
         })
         .catch(err => console.log(err))
@@ -61,6 +63,13 @@ const listJobs = (jobs) => {
     let counter = 0;
     $("#containerHighlights").innerHTML = "";
     for (const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } of jobs){
+        let animeName = ""
+        if(anime.length > 15){
+            animeName = `${anime.slice(0,15)}...`
+        }else{
+            animeName = anime
+        }
+        
         if (counter < 4) {
             $("#containerHighlights").innerHTML += `
             <div class="w-[250px] bg-white p-3">
@@ -68,7 +77,7 @@ const listJobs = (jobs) => {
                 <h2 class="mb-1 text-2xl">${name}</h2>
                 <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
                 <p class="mb-4">${description.slice(0,70)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${anime}</span>
+                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
@@ -84,19 +93,42 @@ const printJobs = (jobs) => {
     let counter = 0;
     for (const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } of jobs){
         if (counter < 8) {
+            if(anime.length > 20){
+                animeName = `${anime.slice(0,20)}...`
+            }else{
+                animeName = anime
+            }
+
             generalContainer.innerHTML += `
             <div class="w-[350px] bg-white p-3">
                 <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-7"></div>
                 <h2 class="mb-1 text-2xl">${name}</h2>
                 <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
                 <p class="mb-4">${description.slice(0,150)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${anime}</span>
+                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
             </div>
             `
             counter += 1
+        }
+    }
+}
+
+// function to generate select with anime name 
+
+const animeList = (array) => {
+    for (const serie of array) {
+        if(animeNameSelect.indexOf(serie.anime) == -1) {
+            animeNameSelect.push(serie.anime);
+        }
+    }
+    for (const anime of animeNameSelect) {
+        if(anime.length > 20) {
+            $("#serie").innerHTML += `<option value="${anime.slice(0,15)}">${anime.slice(0,15)}...</option>`
+        }else{
+            $("#serie").innerHTML += `<option value="${anime}">${anime}</option>`
         }
     }
 }
