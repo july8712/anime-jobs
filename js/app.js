@@ -82,7 +82,7 @@ const listJobs = (jobs) => {
 const printJobs = (jobs) => {
     generalContainer.innerHTML = ""
     let counter = 0;
-    for (const { name, description, location, seniority, salary, publicationDate, image, anime, page, applications, id } of jobs){
+    for (const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } of jobs){
         if (counter < 8) {
             generalContainer.innerHTML += `
             <div class="w-[350px] bg-white p-3">
@@ -91,7 +91,7 @@ const printJobs = (jobs) => {
                 <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
                 <p class="mb-4">${description.slice(0,150)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${anime}</span>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${seniority}</span>
+                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
             </div>
