@@ -19,6 +19,7 @@ const generalContainer = $("#generalContainer")
 let dataJobs = []
 let animeNameSelect = []
 let genreSelect = []
+let localionSelect = []
 
 // ***************************************** End Variables ************************************************
 
@@ -32,6 +33,7 @@ const showData = () => {
             printJobs(data)
             animeList(data)
             genreList(data)
+            locationList(data)
             listJobs(changeHighlights("recent", dataJobs))
         })
         .catch(err => console.log(err))
@@ -90,6 +92,8 @@ const listJobs = (jobs) => {
     }
 }
 
+// function for show general jobs
+
 const printJobs = (jobs) => {
     generalContainer.innerHTML = ""
     let counter = 0;
@@ -145,6 +149,19 @@ const genreList = (array) => {
     }
     for (const genre of genreSelect) {
         $("#genre").innerHTML += `<option value="${genre}">${genre}</option>`
+    }
+}
+
+// function to generate select with location
+
+const locationList = (array) => {
+    for (const serie of array) {
+        if(localionSelect.indexOf(serie.location) == -1) {
+            localionSelect.push(serie.location);
+        }
+    }
+    for (const location of localionSelect) {
+        $("#location").innerHTML += `<option value="${location}">${location}</option>`
     }
 }
 
