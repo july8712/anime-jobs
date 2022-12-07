@@ -92,6 +92,8 @@ const listJobs = (jobs) => {
     }
 }
 
+// function for show general jobs
+
 const printJobs = (jobs) => {
     generalContainer.innerHTML = ""
     let counter = 0;
