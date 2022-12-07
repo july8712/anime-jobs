@@ -224,5 +224,9 @@ $("#genre").addEventListener("change", (e) => {
     filterFor("genre", e.target.value)
 })
 
+$("#reset").addEventListener("click", (e) => {
+    printJobs(dataJobs)
+})
+
 // console.log(new Date(1669402798).toLocaleDateString());
 
