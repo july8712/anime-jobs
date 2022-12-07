@@ -34,11 +34,11 @@ const showData = () => {
             animeList(data)
             genreList(data)
             locationList(data)
-            listJobs(changeHighlights("recent", dataJobs))
+            listJobs(changeHighlights("recent", [...dataJobs]))
         })
         .catch(err => console.log(err))
 }
-
+console.log(dataJobs);
 showData()
 
 const filterFor = (endpoint, type) => {
@@ -180,7 +180,7 @@ const locationList = (array) => {
 // *********************************** Events ***********************************
 
 mostRequested.addEventListener('click', () => {
-    listJobs(changeHighlights("most", dataJobs))
+    listJobs(changeHighlights("most", [...dataJobs]))
     removeClass(mostRequested, "bg-[#b7325e]")
     addClass(mostRequested, "bg-[#ce4164]")
     removeClass(lastAdditions, "bg-[#ce4164]")
@@ -190,7 +190,7 @@ mostRequested.addEventListener('click', () => {
 })
 
 lessRequested.addEventListener('click',() => {
-    listJobs(changeHighlights("less", dataJobs))
+    listJobs(changeHighlights("less", [...dataJobs]))
     removeClass(mostRequested, "bg-[#ce4164]")
     addClass(mostRequested, "bg-[#b7325e]")
     removeClass(lastAdditions, "bg-[#ce4164]")
@@ -200,7 +200,7 @@ lessRequested.addEventListener('click',() => {
 })
 
 lastAdditions.addEventListener('click',() => {
-    listJobs(changeHighlights("recent", dataJobs))
+    listJobs(changeHighlights("recent", [...dataJobs]))
     removeClass(mostRequested, "bg-[#ce4164]")
     addClass(mostRequested, "bg-[#b7325e]")
     removeClass(lastAdditions, "bg-[#b7325e]")
