@@ -18,6 +18,7 @@ const generalContainer = $("#generalContainer")
 
 let dataJobs = []
 let animeNameSelect = []
+let genreSelect = []
 
 // ***************************************** End Variables ************************************************
 
@@ -30,6 +31,7 @@ const showData = () => {
             dataJobs = data;
             printJobs(data)
             animeList(data)
+            genreList(data)
             listJobs(changeHighlights("recent", dataJobs))
         })
         .catch(err => console.log(err))
@@ -133,7 +135,18 @@ const animeList = (array) => {
     }
 }
 
+// function to generate select with genre
 
+const genreList = (array) => {
+    for (const serie of array) {
+        if(genreSelect.indexOf(serie.genre) == -1) {
+            genreSelect.push(serie.genre);
+        }
+    }
+    for (const genre of genreSelect) {
+        $("#genre").innerHTML += `<option value="${genre}">${genre}</option>`
+    }
+}
 
 // *********************************** Events ***********************************
 
