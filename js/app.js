@@ -41,6 +41,18 @@ const showData = () => {
 
 showData()
 
+const filterFor = (endpoint, type) => {
+    fetch(`${URL_BASE}?${endpoint}=${type}`)
+        .then(response => response.json())
+        .then(data => {
+            printJobs(data)
+        })
+        .catch(err => console.log(err))
+}
+
+
+
+
 const changeHighlights = (searchBy, data ) => {
     let order = []
     switch (searchBy){
@@ -195,6 +207,21 @@ lastAdditions.addEventListener('click',() => {
     addClass(lastAdditions, "bg-[#ce4164]")
     removeClass(lessRequested, "bg-[#ce4164]")
     addClass(lessRequested, "bg-[#b7325e]")
+})
+
+// filter events
+
+$("#location").addEventListener("change", (e) => {
+    filterFor("location", e.target.value)
+})
+$("#experience").addEventListener("change", (e) => {
+    filterFor("experience", e.target.value)
+})
+$("#serie").addEventListener("change", (e) => {
+    filterFor("anime", e.target.value)
+})
+$("#genre").addEventListener("change", (e) => {
+    filterFor("genre", e.target.value)
 })
 
 // console.log(new Date(1669402798).toLocaleDateString());
