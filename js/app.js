@@ -182,16 +182,21 @@ const locationList = (array) => {
 // function for see more
 
 const seeMore = (numId) => {
+    fetch(`${URL_BASE}${numId}`)
+        .then(response => response.json())
+        .then(data => {
+            printDetails(data)
+            console.log(data, "prueba");
+        })
+        .catch(err => console.log(err))
+}
+
+const printDetails = (jobs) => {
     addClass($("#highlights"), "hidden")
     addClass($("#billboard"), "hidden")
     addClass($("#jobs"), "hidden")
     removeClass($("#details"), "hidden")
-    printDetails(dataJobs.filter(job => job.id === numId)) 
-}
-
-const printDetails = (jobs) => {
-    
-    const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } = jobs[0]
+    const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } = jobs
 
     $("#details").innerHTML = `
         <div class="w-3/5 bg-white p-10 flex border-2">
