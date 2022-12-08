@@ -12,12 +12,12 @@
 <body>
     <header class="bg-[#3a020d] w-full py-5 flex justify-center text-[#e06991] bg-[url('/img/inuyasha.png')] bg-right-bottom bg-contain bg-no-repeat shadow-inner">
         <div class="w-2/3 flex justify-between items-end">
-            <a href="#"><img src="img/logo.png" alt="Logo Anime Jobs" class="w-28"></a>
+            <img src="img/logo.png" alt="Logo Anime Jobs" class="w-28 cursor-pointer" id="logo">
             <nav class="mb-7">
                 <ul class="flex text-3xl font-bold font-['Caveat']">
-                    <li class="px-5"><a href="#" class="bold border-b-transparent hover:border-b-[#e06991] border-b-2">Home</a></li>
-                    <li class="px-5"><a href="#" class="bold border-b-transparent hover:border-b-[#e06991] border-b-2">Nuevo Empleo</a></li>
-                    <li class="px-5"><a href="#" class="bold border-b-transparent hover:border-b-[#e06991] border-b-2">Botón</a></li>
+                    <li class="bold border-b-transparent hover:border-b-[#e06991] border-b-2 cursor-pointer" id="btnHome">Home</li>
+                    <li class="bold border-b-transparent hover:border-b-[#e06991] border-b-2 cursor-pointer ml-10" id="btnNewJob">Nuevo Empleo</li>
+                    <li class="bold border-b-transparent hover:border-b-[#e06991] border-b-2 cursor-pointer ml-10">Botón</li>
                 </ul>
             </nav>
         </div>
@@ -79,6 +79,9 @@
     </section>
     <section id="details" class="hidden w-full flex justify-center bg-[#ce4164] p-10">
 
+    </section>
+    <section id="newJob" class="hidden w-full flex justify-center bg-[#ce4164] p-10">
+        
     </section>
     <script src="js/app.js"></script>
 </body>

@@ -182,9 +182,9 @@ const locationList = (array) => {
 // function for see more
 
 const seeMore = (numId) => {
-    $("#highlights").style.display = "none"
-    $("#billboard").style.display = "none"
-    $("#jobs").style.display = "none"
+    addClass($("#highlights"), "hidden")
+    addClass($("#billboard"), "hidden")
+    addClass($("#jobs"), "hidden")
     removeClass($("#details"), "hidden")
     printDetails(dataJobs.filter(job => job.id === numId)) 
 }
@@ -210,12 +210,30 @@ const printDetails = (jobs) => {
                         <button class="bg-[#ce4164] py-2 px-3 text-xl text-white rounded-lg font-semibold">Eliminar</button>
                     </div>
                 </div>
-                
             </div>
 `
 }
 
 // *********************************** Events ***********************************
+
+$("#btnHome").addEventListener("click", () => {
+    removeClass($("#highlights"), "hidden")
+    removeClass($("#billboard"), "hidden")
+    removeClass($("#jobs"), "hidden")
+    addClass($("#details"), "hidden")
+})
+$("#logo").addEventListener("click", () => {
+    removeClass($("#highlights"), "hidden")
+    removeClass($("#billboard"), "hidden")
+    removeClass($("#jobs"), "hidden")
+    addClass($("#details"), "hidden")
+})
+$("#btnNewJob").addEventListener("click", () => {
+    addClass($("#highlights"), "hidden")
+    addClass($("#billboard"), "hidden")
+    addClass($("#jobs"), "hidden")
+    removeClass($("#newJob"), "hidden")
+})
 
 mostRequested.addEventListener('click', () => {
     listJobs(changeHighlights("most", [...dataJobs]))
@@ -265,6 +283,8 @@ $("#genre").addEventListener("change", (e) => {
 $("#reset").addEventListener("click", (e) => {
     printJobs(dataJobs)
 })
+
+
 
 // console.log(new Date(1669402798).toLocaleDateString());
 
