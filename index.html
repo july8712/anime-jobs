@@ -81,7 +81,44 @@
 
     </section>
     <section id="newJob" class="hidden w-full flex justify-center bg-[#ce4164] p-10">
-        
+        <form action="" class="bg-[#ffe4ed] p-10">
+            <div>
+                <label for="nameJob">Título del empleo:</label>
+                <input type="text" name="nameJob" id="nameJob" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="serie">Serie:</label>
+                <input type="text" name="serie" id="serie" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="salary">Sueldo:</label>
+                <input type="text" name="salary" id="salary" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="locationJob">Ubicación:</label>
+                <input type="text" name="locationJob" id="locationJob" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="imageJob">Imagen:</label>
+                <input type="text" name="imageJob" id="imageJob" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="experienceJob">Experiencia requerida:</label>
+                <select name="experienceJob" id="experienceJob">
+                    <option value="Seleccionar" default>Seleccionar</option>
+                    <option value="0">0 años</option>
+                    <option value="1+">1+ años</option>
+                    <option value="3+">3+ años</option>
+                    <option value="5+">5+ años</option>
+                </select>
+            </div>
+            <div>
+                <label for="descriptionJob">Descripción del empleo:</label>
+                <textarea name="descriptionJob" id="descriptionJob" cols="30" rows="10"></textarea>
+            </div>
+            <input type="submit" value="Guardar">
+            
+        </form>
     </section>
     <script src="js/app.js"></script>
 </body>
