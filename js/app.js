@@ -220,12 +220,14 @@ $("#btnHome").addEventListener("click", () => {
     removeClass($("#highlights"), "hidden")
     removeClass($("#billboard"), "hidden")
     removeClass($("#jobs"), "hidden")
+    addClass($("#newJob"), "hidden")
     addClass($("#details"), "hidden")
 })
 $("#logo").addEventListener("click", () => {
     removeClass($("#highlights"), "hidden")
     removeClass($("#billboard"), "hidden")
     removeClass($("#jobs"), "hidden")
+    addClass($("#newJob"), "hidden")
     addClass($("#details"), "hidden")
 })
 $("#btnNewJob").addEventListener("click", () => {
