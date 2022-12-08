@@ -12,12 +12,12 @@
 <body>
     <header class="bg-[#3a020d] w-full py-5 flex justify-center text-[#e06991] bg-[url('/img/inuyasha.png')] bg-right-bottom bg-contain bg-no-repeat shadow-inner">
         <div class="w-2/3 flex justify-between items-end">
-            <a href="#"><img src="img/logo.png" alt="Logo Anime Jobs" class="w-28"></a>
+            <img src="img/logo.png" alt="Logo Anime Jobs" class="w-28 cursor-pointer" id="logo">
             <nav class="mb-7">
                 <ul class="flex text-3xl font-bold font-['Caveat']">
-                    <li class="px-5"><a href="#" class="bold border-b-transparent hover:border-b-[#e06991] border-b-2">Home</a></li>
-                    <li class="px-5"><a href="#" class="bold border-b-transparent hover:border-b-[#e06991] border-b-2">Nuevo Empleo</a></li>
-                    <li class="px-5"><a href="#" class="bold border-b-transparent hover:border-b-[#e06991] border-b-2">Botón</a></li>
+                    <li class="bold border-b-transparent hover:border-b-[#e06991] border-b-2 cursor-pointer" id="btnHome">Home</li>
+                    <li class="bold border-b-transparent hover:border-b-[#e06991] border-b-2 cursor-pointer ml-10" id="btnNewJob">Nuevo Empleo</li>
+                    <li class="bold border-b-transparent hover:border-b-[#e06991] border-b-2 cursor-pointer ml-10">Botón</li>
                 </ul>
             </nav>
         </div>
@@ -76,6 +76,49 @@
         <div id="generalContainer" class="w-4/5 flex justify-around flex-wrap py-10 gap-y-6">
 
         </div>
+    </section>
+    <section id="details" class="hidden w-full flex justify-center bg-[#ce4164] p-10">
+
+    </section>
+    <section id="newJob" class="hidden w-full flex justify-center bg-[#ce4164] p-10">
+        <form action="" class="bg-[#ffe4ed] p-10">
+            <div>
+                <label for="nameJob">Título del empleo:</label>
+                <input type="text" name="nameJob" id="nameJob" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="serie">Serie:</label>
+                <input type="text" name="serie" id="serie" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="salary">Sueldo:</label>
+                <input type="text" name="salary" id="salary" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="locationJob">Ubicación:</label>
+                <input type="text" name="locationJob" id="locationJob" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="imageJob">Imagen:</label>
+                <input type="text" name="imageJob" id="imageJob" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="experienceJob">Experiencia requerida:</label>
+                <select name="experienceJob" id="experienceJob">
+                    <option value="Seleccionar" default>Seleccionar</option>
+                    <option value="0">0 años</option>
+                    <option value="1+">1+ años</option>
+                    <option value="3+">3+ años</option>
+                    <option value="5+">5+ años</option>
+                </select>
+            </div>
+            <div>
+                <label for="descriptionJob">Descripción del empleo:</label>
+                <textarea name="descriptionJob" id="descriptionJob" cols="30" rows="10"></textarea>
+            </div>
+            <input type="submit" value="Guardar">
+            
+        </form>
     </section>
     <script src="js/app.js"></script>
 </body>
