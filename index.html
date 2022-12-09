@@ -77,9 +77,15 @@
 
         </div>
     </section>
+
+<!-- Datails of job -->
+
     <section id="details" class="hidden w-full flex justify-center bg-[#ce4164] p-10">
 
     </section>
+
+<!-- New Job -->
+
     <section id="newJob" class="hidden w-full flex justify-center bg-[#ce4164] p-10 hidden">
         <form action="" class="bg-[#ffe4ed] p-10">
             <div>
@@ -117,6 +123,46 @@
                 <textarea name="descriptionJob" id="descriptionJob" cols="30" rows="10"></textarea>
             </div>
             <input type="submit" value="Guardar">
+            
+        </form>
+    </section>
+    <section id="editJob" class="hidden w-full flex justify-center bg-[#ce4164] p-10 hidden">
+        <form action="" class="bg-[#ffe4ed] p-10" id="btnSaveEdit">
+            <div>
+                <label for="nameJobEdit">Título del empleo:</label>
+                <input type="text" name="nameJobEdit" id="nameJobEdit">
+            </div>
+            <div>
+                <label for="serieEdit">Serie:</label>
+                <input type="text" name="serieEdit" id="serieEdit" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="salaryEdit">Sueldo:</label>
+                <input type="text" name="salaryEdit" id="salaryEdit" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="locationJobEdit">Ubicación:</label>
+                <input type="text" name="locationJobEdit" id="locationJobEdit" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="imageJobEdit">Imagen:</label>
+                <input type="text" name="imageJobEdit" id="imageJobEdit" placeholder="Barrendero">
+            </div>
+            <div>
+                <label for="experienceJobEdit">Experiencia requerida:</label>
+                <select name="experienceJobEdit" id="experienceJobEdit" class="p-5">
+                    <option value="Seleccionar">Seleccionar</option>
+                    <option value="0 años">0 años</option>
+                    <option value="1+ años">1+ años</option>
+                    <option value="3+ años">3+ años</option>
+                    <option value="5+ años">5+ años</option>
+                </select>
+            </div>
+            <div>
+                <label for="descriptionJobEdit">Descripción del empleo:</label>
+                <textarea name="descriptionJobEdit" id="descriptionJobEdit" cols="30" rows="10"></textarea>
+            </div>
+            <input type="submit" value="Guardar" >
             
         </form>
     </section>
