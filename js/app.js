@@ -195,10 +195,8 @@ const seeMore = (numId) => {
             if(isEdit){
                 editButton(data)
                 isEdit = false
-                console.log("edit");
             }else{
                 printDetails(data)
-                console.log("else");
             }
         })
         .catch(err => console.log(err))
@@ -227,7 +225,7 @@ const printDetails = (jobs) => {
                     <p>Solicitudes: ${applications}</p>
                     <div class="flex justify-end mt-5">
                         <button class="bg-[#ffe4ed] py-2 px-3 mr-3 text-xl rounded-lg font-semibold" onclick="edit('${id}')">Editar</button>
-                        <button class="bg-[#ce4164] py-2 px-3 text-xl text-white rounded-lg font-semibold">Eliminar</button>
+                        <button class="bg-[#ce4164] py-2 px-3 text-xl text-white rounded-lg font-semibold" onclick="btnDelete('${id}')">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -269,9 +267,6 @@ const editJob = (id, data) => {
             'Content-Type': 'Application/json'
         },
         body: JSON.stringify(data)
-    }).then(res => res)
-    .then(res => {
-        console.log(res)
     })
     .finally(() => window.location.href = "index.html")
 }
@@ -286,6 +281,15 @@ const getNewValues = () => {
         experience: $("#experienceJobEdit").value,
         description: $("#descriptionJobEdit").value
     }
+}
+
+// Delete functionality
+
+const btnDelete = (id) => {
+    fetch(`${URL_BASE}${id}`, {
+        method: 'DELETE'
+    })
+    .finally(() => window.location.href = "index.html")
 }
 
 // *********************************** Events ***********************************
@@ -359,8 +363,6 @@ $("#genre").addEventListener("change", (e) => {
 $("#reset").addEventListener("click", (e) => {
     printJobs(dataJobs)
 })
-
-// Edit
 
 
 // console.log(new Date(1669402798).toLocaleDateString());
