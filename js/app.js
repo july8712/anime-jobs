@@ -7,6 +7,10 @@ const removeClass = (selector, classname) => {
     selector.classList.remove(classname)
 }
 const URL_BASE =  "https://6380fa6a8efcfcedac14a09f.mockapi.io/jobs/"
+const addValue = (selector, contValue) => {
+    console.log(contValue)
+    selector.value = contValue
+}
 
 
 // ***************************************** Variables ************************************************
@@ -134,6 +138,7 @@ const printJobs = (jobs) => {
             counter += 1
         }
     }
+    
 }
 
 // function to generate select with anime name 
@@ -181,20 +186,30 @@ const locationList = (array) => {
 
 // function for see more
 
+let isEdit = false
+
 const seeMore = (numId) => {
     fetch(`${URL_BASE}${numId}`)
         .then(response => response.json())
         .then(data => {
-            printDetails(data)
-            console.log(data, "prueba");
+            if(isEdit){
+                editButton(data)
+                isEdit = false
+                console.log("edit");
+            }else{
+                printDetails(data)
+                console.log("else");
+            }
         })
         .catch(err => console.log(err))
 }
 
 const printDetails = (jobs) => {
+    isEdit = true;
     addClass($("#highlights"), "hidden")
     addClass($("#billboard"), "hidden")
     addClass($("#jobs"), "hidden")
+    addClass($("#editJob"), "hidden")
     removeClass($("#details"), "hidden")
     const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } = jobs
 
@@ -211,12 +226,66 @@ const printDetails = (jobs) => {
                     <p>Ubicación: ${location}</p>
                     <p>Solicitudes: ${applications}</p>
                     <div class="flex justify-end mt-5">
-                        <button class="bg-[#ffe4ed] py-2 px-3 mr-3 text-xl rounded-lg font-semibold">Editar</button>
+                        <button class="bg-[#ffe4ed] py-2 px-3 mr-3 text-xl rounded-lg font-semibold" onclick="edit('${id}')">Editar</button>
                         <button class="bg-[#ce4164] py-2 px-3 text-xl text-white rounded-lg font-semibold">Eliminar</button>
                     </div>
                 </div>
             </div>
 `
+}
+
+const edit = (id) => {
+    isEdit = true
+    seeMore(id)
+}
+
+// Edit functionality
+
+const editButton = (data) => {
+    
+    addClass($("#details"), "hidden")
+    removeClass($("#editJob"), "hidden")
+    console.log(data, "data" );
+    addValue($("#nameJobEdit"), data.name)
+    addValue($("#serieEdit"), data.anime)
+    addValue($("#salaryEdit"), data.salary)
+    addValue($("#locationJobEdit"), data.location)
+    addValue($("#imageJobEdit"), data.image)
+    addValue($("#experienceJobEdit"), data.experience)
+    addValue($("#descriptionJobEdit"), data.description)
+    
+    $("#btnSaveEdit").addEventListener("submit", (e) => {
+        e.preventDefault()
+        editJob(data.id, getNewValues())
+        return
+    })
+}
+
+const editJob = (id, data) => {
+    console.log(id, data)
+    fetch(`${URL_BASE}${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'Application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => res)
+    .then(res => {
+        console.log(res)
+    })
+    .finally(() => window.location.href = "index.html")
+}
+
+const getNewValues = () => {
+    return {
+        name: $("#nameJobEdit").value,
+        anime: $("#serieEdit").value,
+        salary: $("#salaryEdit").value,
+        location:$("#locationJobEdit").value,
+        image: $("#imageJobEdit").value,
+        experience: $("#experienceJobEdit").value,
+        description: $("#descriptionJobEdit").value
+    }
 }
 
 // *********************************** Events ***********************************
@@ -291,6 +360,7 @@ $("#reset").addEventListener("click", (e) => {
     printJobs(dataJobs)
 })
 
+// Edit
 
 
 // console.log(new Date(1669402798).toLocaleDateString());
