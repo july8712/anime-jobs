@@ -87,14 +87,14 @@
 <!-- New Job -->
 
     <section id="newJob" class="hidden w-full flex justify-center bg-[#ce4164] p-10 hidden">
-        <form action="" class="bg-[#ffe4ed] p-10">
+        <form action="" class="bg-[#ffe4ed] p-10" id="formNewJob">
             <div>
                 <label for="nameJob">Título del empleo:</label>
                 <input type="text" name="nameJob" id="nameJob" placeholder="Barrendero">
             </div>
             <div>
-                <label for="serie">Serie:</label>
-                <input type="text" name="serie" id="serie" placeholder="Barrendero">
+                <label for="newSerie">Serie:</label>
+                <input type="text" name="newSerie" id="newSerie" placeholder="Barrendero">
             </div>
             <div>
                 <label for="salary">Sueldo:</label>
@@ -122,8 +122,7 @@
                 <label for="descriptionJob">Descripción del empleo:</label>
                 <textarea name="descriptionJob" id="descriptionJob" cols="30" rows="10"></textarea>
             </div>
-            <input type="submit" value="Guardar">
-            
+            <input type="submit" value="Guardar" id="submitJob">
         </form>
     </section>
     <section id="editJob" class="hidden w-full flex justify-center bg-[#ce4164] p-10 hidden">

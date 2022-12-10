@@ -292,6 +292,36 @@ const btnDelete = (id) => {
     .finally(() => window.location.href = "index.html")
 }
 
+// Add new job
+
+const addJob = () => {
+    fetch(`${URL_BASE}`, {
+        method: "POST",
+        headers:{
+            'Content-Type': 'Application/json'
+        },
+        body: JSON.stringify(addNewJob())
+    })
+    $("#formNewJob").reset()
+}
+
+const addNewJob = () => {
+    return {
+        name: $("#nameJob").value,
+        anime: $("#newSerie").value,
+        salary: $("#salary").value,
+        location:$("#locationJob").value,
+        image: $("#imageJob").value,
+        experience: $("#experienceJob").value,
+        description: $("#descriptionJob").value
+    }
+}
+
+$("#submitJob").addEventListener("click",(e) =>{
+    e.preventDefault()
+    addJob()
+})
+
 // *********************************** Events ***********************************
 
 $("#btnHome").addEventListener("click", () => {
@@ -313,6 +343,7 @@ $("#btnNewJob").addEventListener("click", () => {
     addClass($("#billboard"), "hidden")
     addClass($("#jobs"), "hidden")
     removeClass($("#newJob"), "hidden")
+    $("#formNewJob").reset()
 })
 
 mostRequested.addEventListener('click', () => {
