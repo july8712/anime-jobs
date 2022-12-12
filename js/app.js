@@ -34,15 +34,19 @@ let localionSelect = []
 // ***************************************** Functions ************************************************
 
 const showData = () => {
+    removeClass($("#contSpinner"), "hidden")
     fetch(`${URL_BASE}`)
         .then(response => response.json())
         .then(data => {
-            dataJobs = data;
-            printJobs(data)
-            animeList(data)
-            genreList(data)
-            locationList(data)
-            listJobs(changeHighlights("recent", [...dataJobs]))
+            setTimeout(() => {
+                dataJobs = data;
+                printJobs(data)
+                animeList(data)
+                genreList(data)
+                locationList(data)
+                listJobs(changeHighlights("recent", [...dataJobs]))
+                addClass($("#contSpinner"), "hidden")
+            },2000)
         })
         .catch(err => console.log(err))
 }
@@ -102,7 +106,7 @@ const listJobs = (jobs) => {
                 <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
                 <p class="mb-4">${description.slice(0,70)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience}</span>
+                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
                 <button class="bg-[#b7325e] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
@@ -116,32 +120,32 @@ const listJobs = (jobs) => {
 // function for show general jobs
 
 const printJobs = (jobs) => {
-    generalContainer.innerHTML = ""
-    let counter = 0;
-    for (const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } of jobs){
-        if (counter < 8) {
-            if(anime.length > 20){
-                animeName = `${anime.slice(0,20)}...`
-            }else{
-                animeName = anime
+        generalContainer.innerHTML = ""
+        let counter = 0;
+        for (const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } of jobs){
+            if (counter < 8) {
+                if(anime.length > 20){
+                    animeName = `${anime.slice(0,20)}...`
+                }else{
+                    animeName = anime
+                }
+    
+                generalContainer.innerHTML += `
+                <div class="w-[350px] bg-white p-3">
+                    <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-7"></div>
+                    <h2 class="mb-1 text-2xl">${name}</h2>
+                    <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
+                    <p class="mb-4">${description.slice(0,150)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
+                    <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
+                    <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience}</span>
+                    <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
+                    <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
+                    <button class="bg-[#b7325e] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
+                </div>
+                `
+                counter += 1
             }
-
-            generalContainer.innerHTML += `
-            <div class="w-[350px] bg-white p-3">
-                <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-7"></div>
-                <h2 class="mb-1 text-2xl">${name}</h2>
-                <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
-                <p class="mb-4">${description.slice(0,150)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience}</span>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
-                <button class="bg-[#b7325e] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
-            </div>
-            `
-            counter += 1
         }
-    }
     
 }
 
@@ -323,10 +327,15 @@ const addNewJob = () => {
     }
 }
 
-$("#submitJob").addEventListener("click",(e) =>{
-    e.preventDefault()
-    addJob()
-})
+// Show spinner
+
+const showSpinner = () => {
+    removeClass($("#contSpinner"), "hidden")
+    setTimeout(() => {
+        addClass($("#contSpinner"), "hidden")
+    },2000)
+}
+
 
 // *********************************** Events ***********************************
 
@@ -401,6 +410,13 @@ $("#reset").addEventListener("click", (e) => {
     printJobs(dataJobs)
 })
 
+$("#submitJob").addEventListener("click",(e) =>{
+    e.preventDefault()
+    addJob()
+})
 
 // console.log(new Date(1669402798).toLocaleDateString());
+window.onload = () =>{
+    
 
+};
