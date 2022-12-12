@@ -54,10 +54,14 @@ console.log(dataJobs);
 showData()
 
 const filterFor = (endpoint, type) => {
+    removeClass($("#contSpinner"), "hidden")
     fetch(`${URL_BASE}?${endpoint}=${type}`)
         .then(response => response.json())
         .then(data => {
-            printJobs(data)
+            setTimeout(() => {
+                printJobs(data)
+                addClass($("#contSpinner"), "hidden")
+            },2000)
         })
         .catch(err => console.log(err))
 }
@@ -204,7 +208,12 @@ const seeMore = (numId) => {
                 editButton(data)
                 isEdit = false
             }else{
-                printDetails(data)
+                removeClass($("#contSpinner"), "hidden")
+                setTimeout(() => {
+                    printDetails(data)
+                    addClass($("#contSpinner"), "hidden")
+                },2000)
+                
             }
         })
         .catch(err => console.log(err))
@@ -242,6 +251,7 @@ const printDetails = (jobs) => {
 
 const edit = (id) => {
     isEdit = true
+    
     seeMore(id)
 }
 
@@ -268,7 +278,7 @@ const editButton = (data) => {
 }
 
 const editJob = (id, data) => {
-    console.log(id, data)
+
     fetch(`${URL_BASE}${id}`, {
         method: 'PUT',
         headers: {
@@ -303,14 +313,14 @@ const btnDelete = (id) => {
 // Add new job
 
 const addJob = () => {
-    fetch(`${URL_BASE}`, {
+        fetch(`${URL_BASE}`, {
         method: "POST",
         headers:{
             'Content-Type': 'Application/json'
         },
         body: JSON.stringify(addNewJob())
-    })
-    .finally(() => window.location.href = "index.html")
+        })
+        .finally(() => window.location.href = "index.html")
     $("#formNewJob").reset()
 }
 
@@ -395,19 +405,35 @@ lastAdditions.addEventListener('click',() => {
 
 $("#location").addEventListener("change", (e) => {
     filterFor("location", e.target.value)
+    $("#experience").value = ""
+    $("#serie").value = ""
+    $("#genre").value = ""
 })
 $("#experience").addEventListener("change", (e) => {
     filterFor("experience", e.target.value)
+    $("#location").value = ""
+    $("#serie").value = ""
+    $("#genre").value = ""
 })
 $("#serie").addEventListener("change", (e) => {
     filterFor("anime", e.target.value)
+    $("#location").value = ""
+    $("#experience").value = ""
+    $("#genre").value = ""
 })
 $("#genre").addEventListener("change", (e) => {
     filterFor("genre", e.target.value)
+    $("#location").value = ""
+    $("#experience").value = ""
+    $("#serie").value = ""
 })
 
 $("#reset").addEventListener("click", (e) => {
-    printJobs(dataJobs)
+    removeClass($("#contSpinner"), "hidden")
+    setTimeout(() => {
+        printJobs(dataJobs)
+        addClass($("#contSpinner"), "hidden")
+    },2000)
 })
 
 $("#submitJob").addEventListener("click",(e) =>{
