@@ -47,10 +47,10 @@
                 <label for="experience" class="mr-3 text-xl font-semibold text-white">Años de experiencia</label>
                 <select name="experience" id="experience" class="text-xl px-2 py-1 rounded">
                     <option value="">Seleccionar</option>
-                    <option value="0">0 años</option>
-                    <option value="1+">1+ años</option>
-                    <option value="3+">3+ años</option>
-                    <option value="5+">5+ años</option>
+                    <option value="Sin experiencia">0 años</option>
+                    <option value="01">1+ años</option>
+                    <option value="03">3+ años</option>
+                    <option value="05">5+ años</option>
                 </select>
             </div>
             
@@ -111,11 +111,11 @@
             <div>
                 <label for="experienceJob">Experiencia requerida:</label>
                 <select name="experienceJob" id="experienceJob">
-                    <option value="Seleccionar" default>Seleccionar</option>
-                    <option value="0">0 años</option>
-                    <option value="1+">1+ años</option>
-                    <option value="3+">3+ años</option>
-                    <option value="5+">5+ años</option>
+                    <option value="">Seleccionar</option>
+                    <option value="Sin experiencia">0 años</option>
+                    <option value="01">1+ años</option>
+                    <option value="03">3+ años</option>
+                    <option value="05">5+ años</option>
                 </select>
             </div>
             <div>
@@ -150,11 +150,11 @@
             <div>
                 <label for="experienceJobEdit">Experiencia requerida:</label>
                 <select name="experienceJobEdit" id="experienceJobEdit" class="p-5">
-                    <option value="Seleccionar">Seleccionar</option>
-                    <option value="0 años">0 años</option>
-                    <option value="1+ años">1+ años</option>
-                    <option value="3+ años">3+ años</option>
-                    <option value="5+ años">5+ años</option>
+                    <option value="">Seleccionar</option>
+                    <option value="Sin experiencia">0 años</option>
+                    <option value="01">1+ años</option>
+                    <option value="03">3+ años</option>
+                    <option value="05">5+ años</option>
                 </select>
             </div>
             <div>
@@ -165,6 +165,10 @@
             
         </form>
     </section>
+    <div id="contSpinner" class="fixed h-screen w-full bg-[rgba(58,2,13,0.7)] z-40 top-0 left-0 hidden">
+        <div id="spinner" class="w-64 h-64 bg-[url('img/spinner2.gif')] bg-contain bg-no-repeat absolute bg-[#ffe4ed] top-[35%] left-[45%] rounded-full"></div>
+    </div>
+    
     <script src="js/app.js"></script>
 </body>
 </html>
