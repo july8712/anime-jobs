@@ -304,10 +304,19 @@ const getNewValues = () => {
 // Delete functionality
 
 const btnDelete = (id) => {
-    fetch(`${URL_BASE}${id}`, {
+    removeClass($("#cancel"), "hidden")
+    $("#btnConfirmDelete").addEventListener("click", () => {
+        fetch(`${URL_BASE}${id}`, {
         method: 'DELETE'
+        })
+        .finally(() => window.location.href = "index.html")
+        addClass($("#cancel"), "hidden")
     })
-    .finally(() => window.location.href = "index.html")
+    $("#btnCancel").addEventListener("click", () => {
+        window.location.href = "index.html"
+        addClass($("#cancel"), "hidden")
+    })
+    
 }
 
 // Add new job
@@ -337,32 +346,17 @@ const addNewJob = () => {
     }
 }
 
-// Show spinner
-
-const showSpinner = () => {
-    removeClass($("#contSpinner"), "hidden")
-    setTimeout(() => {
-        addClass($("#contSpinner"), "hidden")
-    },2000)
-}
-
 
 // *********************************** Events ***********************************
 
 $("#btnHome").addEventListener("click", () => {
-    removeClass($("#highlights"), "hidden")
-    removeClass($("#billboard"), "hidden")
-    removeClass($("#jobs"), "hidden")
-    addClass($("#newJob"), "hidden")
-    addClass($("#details"), "hidden")
+    window.location.href = "index.html"
 })
+
 $("#logo").addEventListener("click", () => {
-    removeClass($("#highlights"), "hidden")
-    removeClass($("#billboard"), "hidden")
-    removeClass($("#jobs"), "hidden")
-    addClass($("#newJob"), "hidden")
-    addClass($("#details"), "hidden")
+    window.location.href = "index.html"
 })
+
 $("#btnNewJob").addEventListener("click", () => {
     addClass($("#highlights"), "hidden")
     addClass($("#billboard"), "hidden")
@@ -442,7 +436,3 @@ $("#submitJob").addEventListener("click",(e) =>{
 })
 
 // console.log(new Date(1669402798).toLocaleDateString());
-window.onload = () =>{
-    
-
-};
