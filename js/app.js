@@ -20,6 +20,10 @@ const mostRequested = $("#mostRequested")
 const lessRequested = $("#lessRequested")
 const generalContainer = $("#generalContainer")
 
+let day = new Date().getDate();
+let month = new Date().getMonth() +1;
+let year = new Date().getFullYear();
+
 let dataJobs = []
 let animeNameSelect = []
 let genreSelect = []
@@ -302,6 +306,7 @@ const addJob = () => {
         },
         body: JSON.stringify(addNewJob())
     })
+    .finally(() => window.location.href = "index.html")
     $("#formNewJob").reset()
 }
 
@@ -310,6 +315,7 @@ const addNewJob = () => {
         name: $("#nameJob").value,
         anime: $("#newSerie").value,
         salary: $("#salary").value,
+        publicationDate: `${month}/${day}/${year}`,
         location:$("#locationJob").value,
         image: $("#imageJob").value,
         experience: $("#experienceJob").value,
