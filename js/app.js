@@ -108,7 +108,7 @@ const listJobs = (jobs) => {
                 <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-7"></div>
                 <h2 class="mb-1 text-2xl">${name}</h2>
                 <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
-                <p class="mb-4">${description.slice(0,70)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
+                <p class="mb-4">${description.slice(0,70)}...<button onclick="seeMore('${id}')" class="ml-4 text-[#ce4164]">Ver más</button></p>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
@@ -139,7 +139,7 @@ const printJobs = (jobs) => {
                     <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-7"></div>
                     <h2 class="mb-1 text-2xl">${name}</h2>
                     <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
-                    <p class="mb-4">${description.slice(0,150)}...<a href="" class="ml-4 text-[#ce4164]">Ver más</a></p>
+                    <p class="mb-4">${description.slice(0,150)}...<button onclick="seeMore('${id}')" class="ml-4 text-[#ce4164]">Ver más</button></p>
                     <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
                     <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience}</span>
                     <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
