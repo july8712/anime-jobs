@@ -239,6 +239,7 @@ const printDetails = (jobs) => {
                     <h4 class="mb-4 text-xl">Requisitos:</h4>
                     <p>Años de experiencia requeridos: ${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</p>
                     <p>Ubicación: ${location}</p>
+                    <p>Sueldo: $${salary}</p>
                     <p>Solicitudes: ${applications}</p>
                     <div class="flex justify-end mt-5">
                         <button class="bg-[#ffe4ed] py-2 px-3 mr-3 text-xl rounded-lg font-semibold" onclick="edit('${id}')">Editar</button>
