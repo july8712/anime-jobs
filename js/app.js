@@ -113,7 +113,7 @@ const listJobs = (jobs) => {
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
                 <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
-                <button class="bg-[#b7325e] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
+                <button class="bg-[#b7325e] hover:bg-[#ce4164] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
             </div>
             `
             counter += 1
@@ -144,7 +144,7 @@ const printJobs = (jobs) => {
                     <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</span>
                     <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
                     <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
-                    <button class="bg-[#b7325e] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
+                    <button class="bg-[#b7325e] hover:bg-[#ce4164] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
                 </div>
                 `
                 counter += 1
@@ -242,8 +242,8 @@ const printDetails = (jobs) => {
                     <p class="text-xl text-[#630c21]">Sueldo: $${salary}</p>
                     <p class="text-xl text-[#630c21]">Solicitudes: ${applications}</p>
                     <div class="flex justify-end mt-5">
-                        <button class="bg-[#ffe4ed] py-2 px-3 mr-3 text-xl rounded-lg font-semibold" onclick="edit('${id}')">Editar</button>
-                        <button class="bg-[#ce4164] py-2 px-3 text-xl text-white rounded-lg font-semibold" onclick="btnDelete('${id}')">Eliminar</button>
+                        <button class="bg-[#ffbcd2] hover:bg-[#ffd0e0] py-2 px-3 mr-3 text-xl rounded-lg font-semibold" onclick="edit('${id}')">Editar</button>
+                        <button class="bg-[#ce4164] hover:bg-[#ff4a86] py-2 px-3 text-xl text-white rounded-lg font-semibold" onclick="btnDelete('${id}')">Eliminar</button>
                     </div>
                 </div>
             </div>
