@@ -226,7 +226,7 @@ const printDetails = (jobs) => {
     addClass($("#jobs"), "hidden")
     addClass($("#editJob"), "hidden")
     removeClass($("#details"), "hidden")
-    const { name, description, location, experience, salary, publicationDate, image, anime, page, applications, id } = jobs
+    const { name, description, location, experience, salary, publicationDate, image, anime, genre, applications, id } = jobs
 
     $("#details").innerHTML = `
         <div class="w-3/5 bg-white p-10 flex border-2 rounded">
@@ -239,6 +239,7 @@ const printDetails = (jobs) => {
                     <h4 class="mb-4 text-2xl font-semibold mb-3 text-[#630c21]">Requisitos:</h4>
                     <p class="text-xl text-[#630c21]">Experiencia requerida: ${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</p>
                     <p class="text-xl text-[#630c21]">Ubicación: ${location}</p>
+                    <p class="text-xl text-[#630c21]">Género: ${genre}</p>
                     <p class="text-xl text-[#630c21]">Sueldo: $${salary}</p>
                     <p class="text-xl text-[#630c21]">Solicitudes: ${applications}</p>
                     <div class="flex justify-end mt-5">
@@ -265,6 +266,7 @@ const editButton = (data) => {
     console.log(data, "data" );
     addValue($("#nameJobEdit"), data.name)
     addValue($("#serieEdit"), data.anime)
+    addValue($("#genreJobEdit"), data.genre)
     addValue($("#salaryEdit"), data.salary)
     addValue($("#locationJobEdit"), data.location)
     addValue($("#imageJobEdit"), data.image)
@@ -294,6 +296,7 @@ const getNewValues = () => {
     return {
         name: $("#nameJobEdit").value,
         anime: $("#serieEdit").value,
+        genre: $("#genreJobEdit").value,
         salary: $("#salaryEdit").value,
         location:$("#locationJobEdit").value,
         image: $("#imageJobEdit").value,
@@ -338,6 +341,7 @@ const addNewJob = () => {
     return {
         name: $("#nameJob").value,
         anime: $("#newSerie").value,
+        genre: $("#genreJob").value,
         salary: $("#salary").value,
         publicationDate: `${month}/${day}/${year}`,
         location:$("#locationJob").value,
