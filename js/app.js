@@ -389,6 +389,8 @@ const validateForm = (classForm, typeForm, id = null) => {
 
 // *********************************** Events ***********************************
 
+// events of navbar buttons
+
 $("#btn-ham").addEventListener("click",() =>{
     $("#navBarMobile").classList.toggle("hidden") 
 })
@@ -416,6 +418,8 @@ for (const btn of $$(".btnNewJob")){
     $("#navBarMobile").classList.toggle("hidden") 
     })
 }
+
+// buttons of highlights section
 
 mostRequested.addEventListener('click', () => {
     listJobs(changeHighlights("most", [...dataJobs]))
