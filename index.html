@@ -20,7 +20,7 @@
                 <img src="img/logo.png" alt="Logo Anime Jobs" class="w-28 cursor-pointer md:mr-0 lg:mr-10" id="logo">
                 <h1 class="mb-3 lg:text-4xl md:text-xl md:mt-5 font-['Acme']">¡¡¡Conseguí ya tu Anime Job!!!</h1>
             </div>
-            <button id="btn-ham" class="lg:hidden text-5xl"><i class="fa-solid fa-bars border-4 py-3 px-4 rounded-lg bg-[#3a020d] border-[#e06991]"></i></button>
+            <button id="btn-ham" class="lg:hidden text-3xl sm:text-4xl"><i class="fa-solid fa-bars border-4 py-3 px-4 rounded-lg bg-[#3a020d] border-[#e06991]"></i></button>
             <nav class="mb-4 hidden lg:block" id="navBar">
                 <ul class="flex text-2xl font-['Acme'] font-light">
                     <li class="bold border-b-transparent hover:border-b-[#e06991] border-b-2 cursor-pointer btnHome" id="">Home</li>
@@ -36,7 +36,7 @@
         </ul>
     </nav>
 
-    <section id="highlights" class="bg-[#630c21] w-full py-5 flex justify-center bg-[url('./img/goku.png')] lg:bg-left-top lg:bg-contain bg-[length:200px] bg-no-repeat">
+    <section id="highlights" class="bg-[#630c21] w-full pt-40 sm:py-5 flex justify-center bg-[url('./img/goku.png')] bg-center-top sm:bg-left-top bg-contain bg-[length:200px] bg-no-repeat">
         <div class="w-5/6 sm:w-2/3 flex flex-col py-7">
             <div class="flex font-bold text-white">
                 <button id="lastAdditions" class="bg-[#ce4164] py-3 px-1 sm:px-5 mr-1 sm:mr-3 rounded-t-lg">Últimos agregados</button>
@@ -49,7 +49,7 @@
     </section>
     <section id="billboard" class="w-full flex justify-center">
         <form action="" id="searchEngine" class="w-full bg-[#b7325e] py-5 flex flex-col lg:flex-row justify-around items-center">
-            <div class="flex justify-around w-11/12">
+            <div class="flex flex-col sm:flex-row justify-around w-11/12">
                 <div>
                     <div class="flex flex-col justify-start">
                         <label for="location" class="mr-3 mb-2 text-xl font-semibold text-white">Ubicación</label>
@@ -216,17 +216,17 @@
     <!-- Spinner -->
 
     <div id="contSpinner" class="flex justify-center items-center fixed h-screen w-full bg-[rgba(58,2,13,0.7)] top-0 left-0 hidden">
-        <div id="spinner" class="w-64 h-64 bg-[url('img/spinner2.gif')] bg-contain bg-no-repeat absolute bg-white rounded-full"></div>
+        <div id="spinner" class="w-48 sm:w-64 h-48 sm:h-64 bg-[url('img/spinner2.gif')] bg-contain bg-no-repeat absolute bg-white rounded-full"></div>
     </div>
 
     <!-- Cancel -->
 
     <div class="flex justify-center w-full fixed top-[40%] hidden" id="cancel">
-        <div  class="bg-white px-10 w-5/6 sm:w-auto py-7 rounded shadow-xl">
-            <p class="text-2xl text-[#630c21] font-semibold ">¿Estás seguro/a de que queres eliminar el empleo?</p>
+        <div  class="bg-white px-5 sm:px-10 w-5/6 sm:w-auto py-7 rounded shadow-xl">
+            <p class="text-2xl text-[#630c21] text-center font-semibold ">¿Estás seguro/a de que queres eliminar el empleo?</p>
             <div class="flex justify-around mt-10">
-                <button id="btnConfirmDelete" class="px-7 py-3 bg-rose-700 hover:bg-[#d1375d] text-white font-bold rounded">Eliminar</button>
-                <button id="btnCancel" class="px-7 py-3 bg-rose-400 hover:bg-[#fb8999] text-white font-semibold rounded">Cancelar</button>
+                <button id="btnConfirmDelete" class="px-5 py-2 sm:px-7 sm:py-3 bg-rose-700 hover:bg-[#d1375d] text-white font-bold rounded">Eliminar</button>
+                <button id="btnCancel" class="px-5 py-2 sm:px-7 sm:py-3 bg-rose-400 hover:bg-[#fb8999] text-white font-semibold rounded">Cancelar</button>
             </div>
         </div>
     </div>
@@ -234,7 +234,7 @@
     <!-- Footer -->
 
     <footer class="w-full flex flex-col items-center py-5 bg-[#3a020d] text-white">
-        <p>&copy; Anime Jobs - Realizado por Julieta Bondi 2022</p>
+        <p class="text-center">&copy; Anime Jobs - Realizado por Julieta Bondi 2022</p>
         <ul class="flex flex-col items-center">
             <li><a href="https://www.julietabondi.com.ar" target="_blank"> Visitá mi portfolio</a></li>
             <li><a href="https://www.linkedin.com/in/julieta-bondi/" target="_blank"> Visitá mi perfil de Linkedín</a></li>
