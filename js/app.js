@@ -241,9 +241,9 @@ const printDetails = (jobs) => {
     const { name, description, location, experience, salary, publicationDate, image, anime, genre, applications, id } = jobs
 
     $("#details").innerHTML = `
-        <div class="w-3/5 bg-white p-10 flex border-2 rounded">
-                <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-3/5 h-[100%] mb-7 rounded-lg mr-5"></div>
-                <div class="w-2/5 text-[#630c21]">
+        <div class="lg:w-3/5 w-full bg-white p-10 flex flex-col lg:flex-row border-2 rounded">
+                <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat lg:w-3/5 w-full h-[300px] lg:h-[100%] mb-7 rounded-lg mr-5"></div>
+                <div class="lg:w-2/5 w-full text-[#630c21]">
                     <h2 class="mb-1 text-3xl font-bold text-[#630c21]">${name}</h2>
                     <h3 class="mb-4 text-xl mb-5 text-[#630c21]">Publicado el: ${publicationDate}</h3>
                     <p class="text-2xl font-semibold mb-3 text-[#630c21]">Serie: ${anime}</p>
