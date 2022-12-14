@@ -48,17 +48,17 @@
         </div>
     </section>
     <section id="billboard" class="w-full flex justify-center">
-        <form action="" id="searchEngine" class="w-full bg-[#b7325e] py-5 flex flex-col lg:flex-row justify-around items-center">
+        <form action="" id="searchEngine" class="w-full bg-[#b7325e] lg:px-10 py-5 flex flex-col lg:flex-row justify-around items-center">
             <div class="flex flex-col sm:flex-row justify-around w-11/12">
-                <div>
-                    <div class="flex flex-col justify-start">
+                <div class="lg:flex lg:flex-row lg:items-center lg:w-1/2 lg:justify-around">
+                    <div class="flex flex-col lg:flex-row justify-start">
                         <label for="location" class="mr-3 mb-2 text-xl font-semibold text-white">Ubicación</label>
                         <select name="location" id="location" class="text-xl px-2 py-1 rounded"> 
                             <option value="">Seleccionar</option>
                         </select>
                     </div>
                     
-                    <div class="flex flex-col justify-start my-5">
+                    <div class="flex flex-col lg:flex-row justify-start my-5">
                         <label for="experience" class="mr-3 mb-2 text-xl font-semibold text-white">Años de experiencia</label>
                         <select name="experience" id="experience" class="text-xl px-2 py-1 rounded">
                             <option value="">Seleccionar</option>
@@ -70,15 +70,15 @@
                     </div>
                 </div>
                 
-                <div>
-                    <div class="flex flex-col justify-end">
+                <div class="lg:flex lg:flex-row lg:items-center lg:w-1/2 lg:justify-around">
+                    <div class="flex flex-col lg:flex-row justify-end">
                         <label for="serie" class="mr-3 mb-2 text-xl font-semibold text-white">Serie</label>
                         <select name="serie" id="serie" class="text-xl px-2 py-1 rounded">
                             <option value="">Seleccionar</option>
                         </select>
                     </div>
                     
-                    <div class="flex flex-col justify-end my-5">
+                    <div class="flex flex-col lg:flex-row justify-end my-5">
                         <label for="genre" class="mr-3 mb-2 text-xl font-semibold text-white">Género</label>
                         <select name="genre" id="genre" class="text-xl px-2 py-1 rounded">
                             <option value="">Seleccionar</option>
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <input type="reset" value="Resetear filtros" class="bg-[#ffe4ed] w-11/12 py-1 px-4 text-xl text-[#630c21] rounded font-semibold" id="reset">
+            <input type="reset" value="Resetear filtros" class="bg-[#ffe4ed] w-11/12 lg:w-1/5 py-1 px-4 text-xl text-[#630c21] rounded font-semibold" id="reset">
             
         </form>
     </section>

@@ -8,7 +8,6 @@ const removeClass = (selector, classname) => {
 }
 const URL_BASE =  "https://6380fa6a8efcfcedac14a09f.mockapi.io/jobs/"
 const addValue = (selector, contValue) => {
-    console.log(contValue)
     selector.value = contValue
 }
 
@@ -50,7 +49,7 @@ const showData = () => {
         })
         .catch(err => console.log(err))
 }
-console.log(dataJobs);
+
 showData()
 
 const filterFor = (endpoint, type) => {
@@ -275,7 +274,6 @@ const editButton = (data) => {
     
     addClass($("#details"), "hidden")
     removeClass($("#editJob"), "hidden")
-    console.log(data, "data" );
     addValue($("#nameJobEdit"), data.name)
     addValue($("#serieEdit"), data.anime)
     addValue($("#genreJobEdit"), data.genre)
