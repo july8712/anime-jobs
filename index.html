@@ -37,11 +37,11 @@
     </nav>
 
     <section id="highlights" class="bg-[#630c21] w-full py-5 flex justify-center bg-[url('./img/goku.png')] lg:bg-left-top lg:bg-contain bg-[length:200px] bg-no-repeat">
-        <div class="w-2/3 flex flex-col py-7">
+        <div class="w-5/6 sm:w-2/3 flex flex-col py-7">
             <div class="flex font-bold text-white">
-                <button id="lastAdditions" class="bg-[#ce4164] py-3 px-5 mr-3 rounded-t-lg">Últimos agregados</button>
-                <button id="mostRequested" class="bg-[#b7325e] py-3 px-5 mr-3 rounded-t-lg">Más solicitados</button>
-                <button id="lessRequested" class="bg-[#b7325e] py-3 px-5 mr-3 rounded-t-lg">Menos solicitados</button>
+                <button id="lastAdditions" class="bg-[#ce4164] py-3 px-1 sm:px-5 mr-1 sm:mr-3 rounded-t-lg">Últimos agregados</button>
+                <button id="mostRequested" class="bg-[#b7325e] py-3 px-1 sm:px-5 mr-1 sm:mr-3 rounded-t-lg">Más solicitados</button>
+                <button id="lessRequested" class="bg-[#b7325e] py-3 px-1 sm:px-5 mr-1 sm:mr-3 rounded-t-lg">Menos solicitados</button>
             </div>
             <div id="containerHighlights" class="bg-[#ce4164] lg:p-10 p-5 flex flex-wrap gap-7 justify-around rounded-tr-lg rounded-br-lg rounded-bl-lg">
             </div>
@@ -107,8 +107,8 @@
 
     <section id="newJob" class="hidden w-full flex justify-center bg-[#ce4164] hidden p-10 lg:p-32 min-h-[80vh]">
         <form action="" class="bg-[#ffe4ed] p-10 w-full lg:w-2/5 rounded" id="formNewJob">
-            <div class="flex gap-2">
-                <div class="w-1/2">
+            <div class="flex sm:flex-row flex-col gap-2">
+                <div class="sm:w-1/2 w-full">
                     <div class="flex flex-col mb-4">
                         <label for="nameJob" class="text-xl font-semibold text-[#ce4164]">Título del empleo:</label>
                         <input type="text" name="nameJob" id="nameJob" placeholder="Niñera" class="fields p-3 mt-3 rounded text-[#ce4164]">
@@ -122,7 +122,7 @@
                         <input type="text" name="salary" id="salary" placeholder="50000" class="fields p-3 mt-3 rounded text-[#ce4164]">
                     </div>
                 </div>
-                <div class="w-1/2">
+                <div class="sm:w-1/2 w-full">
                     <div class="flex flex-col mb-4">
                         <label for="locationJob" class="text-xl font-semibold text-[#ce4164]">Ubicación:</label>
                         <input type="text" name="locationJob" id="locationJob" placeholder="Japón" class="fields p-3 mt-3 rounded text-[#ce4164]">
@@ -161,8 +161,8 @@
 
     <section id="editJob" class="hidden w-full flex justify-center bg-[#ce4164] p-10 hidden lg:p-32 min-h-[80vh]">
         <form action="" class="bg-[#ffe4ed] p-10 w-full lg:w-2/5 rounded" id="btnSaveEdit">
-            <div class="flex gap-2">
-                <div class="w-1/2">
+            <div class="flex sm:flex-row flex-col gap-2">
+                <div class="sm:w-1/2 w-full">
                     <div class="flex flex-col mb-4">
                         <label for="nameJobEdit" class="text-xl font-semibold text-[#ce4164]">Título del empleo:</label>
                         <input type="text" name="nameJobEdit" id="nameJobEdit" class="fieldsEdit p-3 mt-3 rounded text-[#ce4164]">
@@ -176,7 +176,7 @@
                         <input type="text" name="salaryEdit" id="salaryEdit" placeholder="Barrendero" class="fieldsEdit p-3 mt-3 rounded text-[#ce4164]">
                     </div>
                 </div>
-                <div class="w-1/2">
+                <div class="sm:w-1/2 w-full">
                     <div class="flex flex-col mb-4">
                         <label for="locationJobEdit" class="text-xl font-semibold text-[#ce4164]">Ubicación:</label>
                         <input type="text" name="locationJobEdit" id="locationJobEdit" placeholder="Barrendero" class="fieldsEdit p-3 mt-3 rounded text-[#ce4164]">
@@ -222,7 +222,7 @@
     <!-- Cancel -->
 
     <div class="flex justify-center w-full fixed top-[40%] hidden" id="cancel">
-        <div  class="bg-white px-10 py-7 rounded shadow-xl">
+        <div  class="bg-white px-10 w-5/6 sm:w-auto py-7 rounded shadow-xl">
             <p class="text-2xl text-[#630c21] font-semibold ">¿Estás seguro/a de que queres eliminar el empleo?</p>
             <div class="flex justify-around mt-10">
                 <button id="btnConfirmDelete" class="px-7 py-3 bg-rose-700 hover:bg-[#d1375d] text-white font-bold rounded">Eliminar</button>
