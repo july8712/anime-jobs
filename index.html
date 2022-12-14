@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Taildwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+     <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/e7d31838ca.js" crossorigin="anonymous"></script>
+    <!-- Favicon -->
     <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet"> 
     <link rel="shortcut icon" href="img/fav.png" type="image/x-icon">
     <title>Anime Jobs</title>
@@ -12,12 +16,12 @@
 <body>
     <header class="bg-[#3a020d] w-full py-5 flex justify-center text-[#e06991] bg-[url('/img/inuyasha.png')] bg-right-bottom bg-contain bg-no-repeat shadow-inner">
         <div class="w-4/5 flex justify-between items-end">
-            <div class="flex items-end">
-                <img src="img/logo.png" alt="Logo Anime Jobs" class="w-28 cursor-pointer mr-10" id="logo">
-                <h1 class="mb-3 text-4xl font-['Acme']">¡¡¡Conseguí ya tu Anime Job!!!</h1>
-
+            <div class="flex flex-col items-center lg:flex-row lg:items-end">
+                <img src="img/logo.png" alt="Logo Anime Jobs" class="w-28 cursor-pointer md:mr-0 lg:mr-10" id="logo">
+                <h1 class="mb-3 lg:text-4xl md:text-xl md:mt-5 font-['Acme']">¡¡¡Conseguí ya tu Anime Job!!!</h1>
             </div>
-            <nav class="mb-4">
+            <a href="#" id="btn-ham" class="lg:hidden text-5xl"><i class="fa-solid fa-bars border-4 py-3 px-4 rounded-lg bg-[#3a020d] border-[#e06991]"></i></a>
+            <nav class="mb-4 hidden lg:block" id="navBar">
                 <ul class="flex text-2xl font-['Acme'] font-light">
                     <li class="bold border-b-transparent hover:border-b-[#e06991] border-b-2 cursor-pointer" id="btnHome">Home</li>
                     <li class="bold border-b-transparent hover:border-b-[#e06991] border-b-2 cursor-pointer ml-10" id="btnNewJob">Nuevo Empleo</li>
@@ -26,57 +30,63 @@
         </div>
     </header>
 
-    <section id="highlights" class="bg-[#630c21] w-full py-5 flex justify-center bg-[url('/img/goku.png')] bg-left-top bg-contain bg-no-repeat">
+    <section id="highlights" class="bg-[#630c21] w-full py-5 flex justify-center bg-[url('/img/goku.png')] lg:bg-left-top lg:bg-contain bg-[length:200px] bg-no-repeat">
         <div class="w-2/3 flex flex-col py-7">
             <div class="flex font-bold text-white">
                 <button id="lastAdditions" class="bg-[#ce4164] py-3 px-5 mr-3 rounded-t-lg">Últimos agregados</button>
                 <button id="mostRequested" class="bg-[#b7325e] py-3 px-5 mr-3 rounded-t-lg">Más solicitados</button>
                 <button id="lessRequested" class="bg-[#b7325e] py-3 px-5 mr-3 rounded-t-lg">Menos solicitados</button>
             </div>
-            <div id="containerHighlights" class="bg-[#ce4164] p-10 flex flex-wrap gap-7 justify-around rounded-tr-lg rounded-br-lg rounded-bl-lg">
+            <div id="containerHighlights" class="bg-[#ce4164] lg:p-10 p-5 flex flex-wrap gap-7 justify-around rounded-tr-lg rounded-br-lg rounded-bl-lg">
             </div>
         </div>
     </section>
     <section id="billboard" class="w-full flex justify-center">
-        <form action="" id="searchEngine" class="w-full bg-[#b7325e] py-5 flex justify-around">
-            <div>
-                <label for="location" class="mr-3 text-xl font-semibold text-white">Ubicación</label>
-                <select name="location" id="location" class="text-xl px-2 py-1 rounded"> 
-                    <option value="">Seleccionar</option>
-                </select>
-            </div>
-            
-            <div>
-                <label for="experience" class="mr-3 text-xl font-semibold text-white">Años de experiencia</label>
-                <select name="experience" id="experience" class="text-xl px-2 py-1 rounded">
-                    <option value="">Seleccionar</option>
-                    <option value="Sin experiencia">0 años</option>
-                    <option value="01">1+ años</option>
-                    <option value="03">3+ años</option>
-                    <option value="05">5+ años</option>
-                </select>
-            </div>
-            
-            <div>
-                <label for="serie" class="mr-3 text-xl font-semibold text-white">Serie</label>
-                <select name="serie" id="serie" class="text-xl px-2 py-1 rounded">
-                    <option value="">Seleccionar</option>
-                </select>
-            </div>
-            
-            <div>
-                <label for="genre" class="mr-3 text-xl font-semibold text-white">Género</label>
-                <select name="genre" id="genre" class="text-xl px-2 py-1 rounded">
-                    <option value="">Seleccionar</option>
-                </select>
+        <form action="" id="searchEngine" class="w-full bg-[#b7325e] py-5 flex flex-col lg:flex-row justify-around items-center">
+            <div class="flex justify-around w-11/12">
+                <div>
+                    <div class="flex flex-col justify-start">
+                        <label for="location" class="mr-3 mb-2 text-xl font-semibold text-white">Ubicación</label>
+                        <select name="location" id="location" class="text-xl px-2 py-1 rounded"> 
+                            <option value="">Seleccionar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex flex-col justify-start my-5">
+                        <label for="experience" class="mr-3 mb-2 text-xl font-semibold text-white">Años de experiencia</label>
+                        <select name="experience" id="experience" class="text-xl px-2 py-1 rounded">
+                            <option value="">Seleccionar</option>
+                            <option value="Sin experiencia">0 años</option>
+                            <option value="01">1+ años</option>
+                            <option value="03">3+ años</option>
+                            <option value="05">5+ años</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex flex-col justify-end">
+                        <label for="serie" class="mr-3 mb-2 text-xl font-semibold text-white">Serie</label>
+                        <select name="serie" id="serie" class="text-xl px-2 py-1 rounded">
+                            <option value="">Seleccionar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex flex-col justify-end my-5">
+                        <label for="genre" class="mr-3 mb-2 text-xl font-semibold text-white">Género</label>
+                        <select name="genre" id="genre" class="text-xl px-2 py-1 rounded">
+                            <option value="">Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
-            <input type="reset" value="Resetear filtros" class="bg-[#ffe4ed] py-1 px-4 text-xl text-[#630c21] rounded font-semibold" id="reset">
+            <input type="reset" value="Resetear filtros" class="bg-[#ffe4ed] w-11/12 py-1 px-4 text-xl text-[#630c21] rounded font-semibold" id="reset">
             
         </form>
     </section>
     <section id="jobs" class="w-full py-5 flex justify-center bg-[#ffe4ed]">
-        <div id="generalContainer" class="w-4/5 flex justify-around flex-wrap py-10 gap-y-6">
+        <div id="generalContainer" class="w-11/12 lg:w-4/5 flex justify-around flex-wrap py-10 gap-y-6">
 
         </div>
     </section>
@@ -218,7 +228,7 @@
     <!-- Footer -->
 
     <footer class="w-full flex flex-col items-center py-5 bg-[#3a020d] text-white">
-        <p>&copy; Anime Jobs - Realizado por Julieta bondi 2022</p>
+        <p>&copy; Anime Jobs - Realizado por Julieta Bondi 2022</p>
         <ul class="flex flex-col items-center">
             <li><a href="https://www.julietabondi.com.ar" target="_blank"> Visitá mi portfolio</a></li>
             <li><a href="https://www.linkedin.com/in/julieta-bondi/" target="_blank"> Visitá mi perfil de Linkedín</a></li>

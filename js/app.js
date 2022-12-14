@@ -104,16 +104,22 @@ const listJobs = (jobs) => {
         
         if (counter < 4) {
             $("#containerHighlights").innerHTML += `
-            <div class="w-[250px] bg-white p-3">
-                <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-7"></div>
-                <h2 class="mb-1 text-2xl">${name}</h2>
-                <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
-                <p class="mb-4">${description.slice(0,70)}...<button onclick="seeMore('${id}')" class="ml-4 text-[#ce4164]">Ver más</button></p>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</span>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
-                <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
-                <button class="bg-[#b7325e] hover:bg-[#ce4164] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
+            <div class="w-[200px] lg:w-[250px] bg-white p-3 flex flex-col justify-between lg:h-[550px] h-[400px] rounded">
+                <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-2/5 mb-5 rounded"></div>
+                <div class="flex flex-col justify-between h-3/5">
+                    <div>
+                        <h2 class="mb-1 lg:text-2xl text-xl">${name}</h2>
+                        <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
+                        <p class="mb-4 hidden lg:block">${description.slice(0,70)}...<button onclick="seeMore('${id}')" class="ml-4 text-[#ce4164]">Ver más</button></p>
+                    </div>
+                    <div>
+                        <span class="bg-[#ce4164] text-xs text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
+                        <span class="bg-[#ce4164] text-xs text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</span>
+                        <span class="bg-[#ce4164] text-xs text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
+                        <span class="bg-[#ce4164] text-xs text-white px-3 py-1 mt-1 hidden lg:inline-block rounded-lg">Solicitudes: ${applications}</span>
+                        <button class="bg-[#b7325e] hover:bg-[#ce4164] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
+                    </div>
+                </div>
             </div>
             `
             counter += 1
@@ -135,16 +141,22 @@ const printJobs = (jobs) => {
                 }
     
                 generalContainer.innerHTML += `
-                <div class="w-[350px] bg-white p-3">
-                    <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-7"></div>
-                    <h2 class="mb-1 text-2xl">${name}</h2>
-                    <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
-                    <p class="mb-4">${description.slice(0,150)}...<button onclick="seeMore('${id}')" class="ml-4 text-[#ce4164]">Ver más</button></p>
-                    <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
-                    <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</span>
-                    <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
-                    <span class="bg-[#ce4164] text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
-                    <button class="bg-[#b7325e] hover:bg-[#ce4164] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
+                <div class="w-[350px] bg-white p-3 flex flex-col justify-between h-[620px] rounded">
+                    <div class="bg-[url('${image}')] bg-cover bg-center bg-no-repeat w-full h-52 mb-5 rounded"></div>
+                    <div class="flex flex-col justify-between h-3/5">
+                        <div>
+                            <h2 class="mb-1 text-2xl">${name}</h2>
+                            <h3 class="mb-4">Publicado el: ${publicationDate}</h3>
+                            <p class="mb-4">${description.slice(0,150)}...<button onclick="seeMore('${id}')" class="ml-4 text-[#ce4164]">Ver más</button></p>
+                        </div>
+                        <div>
+                            <span class="bg-[#ce4164] text-sm text-white px-3 py-1 mt-1 inline-block rounded-lg">${animeName}</span>
+                            <span class="bg-[#ce4164] text-sm text-white px-3 py-1 mt-1 inline-block rounded-lg">${experience == "Sin experiencia" ? "Sin experiencia" : (experience.slice(1,2) +"+ años")}</span>
+                            <span class="bg-[#ce4164] text-sm text-white px-3 py-1 mt-1 inline-block rounded-lg">${location}</span>
+                            <span class="bg-[#ce4164] text-sm text-white px-3 py-1 mt-1 inline-block rounded-lg">Solicitudes: ${applications}</span>
+                            <button class="bg-[#b7325e] hover:bg-[#ce4164] text-white font-semibold w-full mt-3 py-3 rounded-lg" data-id="${id}" onclick="seeMore('${id}')">Ver más</button>
+                        </div>
+                    </div>
                 </div>
                 `
                 counter += 1
@@ -463,4 +475,3 @@ $("#createJob").addEventListener("click",(e) =>{
     e.preventDefault()
     validateForm(".fields", "newJob")
 })
-
