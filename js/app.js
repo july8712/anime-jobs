@@ -385,17 +385,27 @@ const validateForm = (classForm, typeForm, id = null) => {
     }
 }
 
+
+
 // *********************************** Events ***********************************
 
-$("#btnHome").addEventListener("click", () => {
-    window.location.href = "index.html"
+$("#btn-ham").addEventListener("click",() =>{
+    $("#navBarMobile").classList.toggle("hidden") 
 })
 
 $("#logo").addEventListener("click", () => {
     window.location.href = "index.html"
 })
 
-$("#btnNewJob").addEventListener("click", () => {
+for (const btn of $$(".btnHome")){
+    btn.addEventListener("click", () => {
+        window.location.href = "index.html"
+        $("#navBarMobile").classList.toggle("hidden") 
+    })
+}
+
+for (const btn of $$(".btnNewJob")){
+    btn.addEventListener("click", () => {
     addClass($("#highlights"), "hidden")
     addClass($("#billboard"), "hidden")
     addClass($("#jobs"), "hidden")
@@ -403,7 +413,9 @@ $("#btnNewJob").addEventListener("click", () => {
     $("#formNewJob").reset()
     addClass($("#details"), "hidden")
     addClass($("#editJob"), "hidden")
-})
+    $("#navBarMobile").classList.toggle("hidden") 
+    })
+}
 
 mostRequested.addEventListener('click', () => {
     listJobs(changeHighlights("most", [...dataJobs]))
@@ -475,3 +487,4 @@ $("#createJob").addEventListener("click",(e) =>{
     e.preventDefault()
     validateForm(".fields", "newJob")
 })
+
