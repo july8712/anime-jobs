@@ -275,7 +275,7 @@ const editButton = (data) => {
     
     $("#btnSaveEdit").addEventListener("submit", (e) => {
         e.preventDefault()
-        editJob(data.id, getNewValues())
+        validateForm(".fieldsEdit", "edit", data.id)
         return
     })
 }
@@ -350,7 +350,28 @@ const addNewJob = () => {
         description: $("#descriptionJob").value
     }
 }
+ 
+const validateForm = (classForm, typeForm, id = null) => {
+    let hasErrors = false;
+    for (const field of $$(classForm)){
+        if (field.value === "") {
+            addClass(field, "bg-rose-700")
+            field.placeholder = "Complete este campo"
+            hasErrors = true;
+        }else{
+            removeClass(field, "bg-rose-700")
+        }
+    }
 
+    if(!hasErrors) {
+        if(typeForm == "newJob"){
+            addJob()
+        }
+        if (typeForm == "edit" && id !== null) {
+            editJob(id, getNewValues())
+        }
+    }
+}
 
 // *********************************** Events ***********************************
 
@@ -437,9 +458,9 @@ $("#reset").addEventListener("click", (e) => {
     },2000)
 })
 
-$("#submitJob").addEventListener("click",(e) =>{
+
+$("#createJob").addEventListener("click",(e) =>{
     e.preventDefault()
-    addJob()
+    validateForm(".fields", "newJob")
 })
 
-// console.log(new Date(1669402798).toLocaleDateString());
