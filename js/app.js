@@ -30,6 +30,7 @@ let localionSelect = []
 let isEdit = false
 let totalJobs = 0
 let page = 1
+let btnDesabled = false;
 
 // ***************************************** End Variables ************************************************
 
@@ -54,11 +55,10 @@ const showData = () => {
         .catch(() => errorMessage())
 }
 
-showData()
+
 
 const showPages = (page) => {
     removeClass($("#contSpinner"), "hidden")
-    
     fetch(`${URL_BASE}?page=${page}&limit=8`)
         .then(response => response.json())
         .then(data => {
@@ -70,7 +70,7 @@ const showPages = (page) => {
         .catch(() => errorMessage())
 }
 
-showPages(1)
+// Filters
 
 const filterFor = (endpoint, type) => {
     removeClass($("#contSpinner"), "hidden")
@@ -84,7 +84,6 @@ const filterFor = (endpoint, type) => {
         })
         .catch(() => errorMessage())
 }
-
 
 const changeHighlights = (searchBy, data ) => {
     let order = []
@@ -107,6 +106,8 @@ const changeHighlights = (searchBy, data ) => {
         }
     return order
 }
+
+// List jobs
 
 const listJobs = (jobs) => {
     let counter = 0;
@@ -227,7 +228,6 @@ const locationList = (array) => {
 
 // function for see more
 
-
 const seeMore = (numId) => {
     fetch(`${URL_BASE}/${numId}`)
         .then(response => response.json())
@@ -285,7 +285,6 @@ const edit = (id) => {
     isEdit = true
     seeMore(id)
 }
-
 
 const editButton = (data) => {
     
@@ -514,14 +513,13 @@ $("#reset").addEventListener("click", (e) => {
     },2000)
 })
 
-
 $("#createJob").addEventListener("click",(e) =>{
     e.preventDefault()
     validateForm(".fields", "newJob")
 })
 
 // Buttons next and previous
-let btnDesabled = false;
+
 $("#previous").addEventListener("click", () => {
     if (page > 1) {
         page -= 1
@@ -562,3 +560,8 @@ $("#next").addEventListener("click", () => {
 $("#close").addEventListener("click", () => {
     addClass($("#errorCatch"), "hidden")
 })
+
+window.onload = () => {
+    showData()
+    showPages(1)
+}
