@@ -27,6 +27,7 @@ let dataJobs = []
 let animeNameSelect = []
 let genreSelect = []
 let localionSelect = []
+let isEdit = false
 let totalJobs = 0
 let page = 1
 
@@ -43,7 +44,6 @@ const showData = () => {
             setTimeout(() => {
                 dataJobs = data;
                 totalJobs = data.length
-                // printJobs(data)
                 animeList(data)
                 genreList(data)
                 locationList(data)
@@ -51,7 +51,7 @@ const showData = () => {
                 addClass($("#contSpinner"), "hidden")
             },2000)
         })
-        .catch(err => console.log(err))
+        .catch(() => errorMessage())
 }
 
 showData()
@@ -67,7 +67,7 @@ const showPages = (page) => {
                 addClass($("#contSpinner"), "hidden")
             },2000)
         })
-        .catch(err => console.log(err))
+        .catch(() => errorMessage())
 }
 
 showPages(1)
@@ -85,7 +85,7 @@ const filterFor = (endpoint, type) => {
                 addClass($("#contSpinner"), "hidden")
             },2000)
         })
-        .catch(err => console.log(err))
+        .catch(() => errorMessage())
 }
 
 
@@ -232,7 +232,6 @@ const locationList = (array) => {
 
 // function for see more
 
-let isEdit = false
 
 const seeMore = (numId) => {
     fetch(`${URL_BASE}/${numId}`)
@@ -250,7 +249,7 @@ const seeMore = (numId) => {
                 
             }
         })
-        .catch(err => console.log(err))
+        .catch(() => errorMessage())
 }
 
 const printDetails = (jobs) => {
@@ -285,13 +284,13 @@ const printDetails = (jobs) => {
 `
 }
 
+// Edit functionality
+
 const edit = (id) => {
     isEdit = true
-    
     seeMore(id)
 }
 
-// Edit functionality
 
 const editButton = (data) => {
     
@@ -322,6 +321,7 @@ const editJob = (id, data) => {
         },
         body: JSON.stringify(data)
     })
+    .catch(() => errorMessage())
     .finally(() => window.location.href = "index.html")
 }
 
@@ -346,6 +346,7 @@ const btnDelete = (id) => {
         fetch(`${URL_BASE}/${id}`, {
         method: 'DELETE'
         })
+        .catch(() => errorMessage())
         .finally(() => window.location.href = "index.html")
         addClass($("#cancel"), "hidden")
     })
@@ -366,6 +367,7 @@ const addJob = () => {
         },
         body: JSON.stringify(addNewJob())
         })
+        .catch(() => errorMessage())
         .finally(() => window.location.href = "index.html")
     $("#formNewJob").reset()
 }
@@ -383,6 +385,8 @@ const addNewJob = () => {
         description: $("#descriptionJob").value
     }
 }
+
+// Validate Form
  
 const validateForm = (classForm, typeForm, id = null) => {
     let hasErrors = false;
@@ -406,6 +410,11 @@ const validateForm = (classForm, typeForm, id = null) => {
     }
 }
 
+// error message
+
+const errorMessage = () => {
+    removeClass($("#errorCatch"), "hidden")
+}
 
 
 // *********************************** Events ***********************************
@@ -480,18 +489,21 @@ $("#location").addEventListener("change", (e) => {
     $("#serie").value = ""
     $("#genre").value = ""
 })
+
 $("#experience").addEventListener("change", (e) => {
     filterFor("experience", e.target.value)
     $("#location").value = ""
     $("#serie").value = ""
     $("#genre").value = ""
 })
+
 $("#serie").addEventListener("change", (e) => {
     filterFor("anime", e.target.value)
     $("#location").value = ""
     $("#experience").value = ""
     $("#genre").value = ""
 })
+
 $("#genre").addEventListener("change", (e) => {
     filterFor("genre", e.target.value)
     $("#location").value = ""
@@ -548,4 +560,10 @@ $("#next").addEventListener("click", () => {
     }else{
         btnDesabled = false
     }
+})
+
+// Button error close 
+
+$("#close").addEventListener("click", () => {
+    addClass($("#errorCatch"), "hidden")
 })
