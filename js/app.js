@@ -6,7 +6,7 @@ const addClass = (selector, classname) => {
 const removeClass = (selector, classname) => {
     selector.classList.remove(classname)
 }
-const URL_BASE =  "https://6380fa6a8efcfcedac14a09f.mockapi.io/jobs/"
+const URL_BASE =  "https://6380fa6a8efcfcedac14a09f.mockapi.io/jobs"
 const addValue = (selector, contValue) => {
     selector.value = contValue
 }
@@ -27,6 +27,8 @@ let dataJobs = []
 let animeNameSelect = []
 let genreSelect = []
 let localionSelect = []
+let totalJobs = 0
+let page = 1
 
 // ***************************************** End Variables ************************************************
 
@@ -34,12 +36,14 @@ let localionSelect = []
 
 const showData = () => {
     removeClass($("#contSpinner"), "hidden")
+    
     fetch(`${URL_BASE}`)
         .then(response => response.json())
         .then(data => {
             setTimeout(() => {
                 dataJobs = data;
-                printJobs(data)
+                totalJobs = data.length
+                // printJobs(data)
                 animeList(data)
                 genreList(data)
                 locationList(data)
@@ -52,9 +56,28 @@ const showData = () => {
 
 showData()
 
+const showPages = (page) => {
+    removeClass($("#contSpinner"), "hidden")
+    
+    fetch(`${URL_BASE}?page=${page}&limit=8`)
+        .then(response => response.json())
+        .then(data => {
+            setTimeout(() => {
+                printJobs(data)
+                addClass($("#contSpinner"), "hidden")
+            },2000)
+        })
+        .catch(err => console.log(err))
+}
+
+showPages(1)
+
+
+
+
 const filterFor = (endpoint, type) => {
     removeClass($("#contSpinner"), "hidden")
-    fetch(`${URL_BASE}?${endpoint}=${type}`)
+    fetch(`${URL_BASE}/?${endpoint}=${type}`)
         .then(response => response.json())
         .then(data => {
             setTimeout(() => {
@@ -212,7 +235,7 @@ const locationList = (array) => {
 let isEdit = false
 
 const seeMore = (numId) => {
-    fetch(`${URL_BASE}${numId}`)
+    fetch(`${URL_BASE}/${numId}`)
         .then(response => response.json())
         .then(data => {
             if(isEdit){
@@ -292,7 +315,7 @@ const editButton = (data) => {
 
 const editJob = (id, data) => {
 
-    fetch(`${URL_BASE}${id}`, {
+    fetch(`${URL_BASE}/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'Application/json'
@@ -320,7 +343,7 @@ const getNewValues = () => {
 const btnDelete = (id) => {
     removeClass($("#cancel"), "hidden")
     $("#btnConfirmDelete").addEventListener("click", () => {
-        fetch(`${URL_BASE}${id}`, {
+        fetch(`${URL_BASE}/${id}`, {
         method: 'DELETE'
         })
         .finally(() => window.location.href = "index.html")
@@ -490,3 +513,39 @@ $("#createJob").addEventListener("click",(e) =>{
     validateForm(".fields", "newJob")
 })
 
+// Buttons next and previous
+let btnDesabled = false;
+$("#previous").addEventListener("click", () => {
+    if (page > 1) {
+        page -= 1
+        $("#pageNumber").innerHTML = page
+        removeClass($("#previous"), "bg-[#ce788e]")
+        addClass($("#previous"), "bg-[#ce4164]")
+        if(btnDesabled === false){
+            removeClass($("#next"), "bg-[#ce788e]")
+            addClass($("#next"), "bg-[#ce4164]")
+        }
+        showPages(page)
+    }
+    if(page == 1) {
+        removeClass($("#previous"), "bg-[#ce4164]")
+        addClass($("#previous"), "bg-[#ce788e]")
+    }
+})
+
+$("#next").addEventListener("click", () => {
+    let total = Math.ceil(totalJobs/8)
+    if(page < Math.ceil(totalJobs/8)){
+        page += 1
+        $("#pageNumber").innerHTML = page
+        removeClass($("#previous"), "bg-[#ce788e]")
+        addClass($("#previous"), "bg-[#ce4164]")
+        showPages(page)
+    }
+    if(page == (total)){
+        removeClass($("#next"), "bg-[#ce4164]")
+        addClass($("#next"), "bg-[#ce788e]")
+    }else{
+        btnDesabled = false
+    }
+})
