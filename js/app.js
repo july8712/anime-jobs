@@ -72,9 +72,6 @@ const showPages = (page) => {
 
 showPages(1)
 
-
-
-
 const filterFor = (endpoint, type) => {
     removeClass($("#contSpinner"), "hidden")
     fetch(`${URL_BASE}/?${endpoint}=${type}`)
@@ -87,8 +84,6 @@ const filterFor = (endpoint, type) => {
         })
         .catch(() => errorMessage())
 }
-
-
 
 
 const changeHighlights = (searchBy, data ) => {
